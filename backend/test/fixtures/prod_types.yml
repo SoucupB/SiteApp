@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  electronice: 1
+  haine: 1
+  accesorii: 1
+
+two:
+  electronice: 1
+  haine: 1
+  accesorii: 1
