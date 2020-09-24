@@ -1,29 +1,31 @@
 # SiteApp
-install ruby on rails from site http://railsinstaller.org/en
-postrgres: https://www.postgresql.org/download/windows
+install ruby on rails from site http://railsinstaller.org/en<br/>
+postrgres: https://www.postgresql.org/download/windows<br/>
 
-Dependencies:
-ruby version 2.3.3
-rails version 5.2.4.3
-postgres (PostgreSQL) 11.8
+<br/>
+Dependencies:<br/>
+ruby version 2.3.3<br/>
+rails version 5.2.4.3<br/>
+postgres (PostgreSQL) 11.8<br/>
+<br/>
+adaugale la environment variables.<br/>
+(<br/>
+pentru postgres daca iti cere sa setezi username si parola:<br/>
+username: postgres<br/>
+password: admin<br/>
+)<br/>
 
-adaugale la environment variables.
-(
-pentru postgres daca iti cere sa setezi username si parola:
-username: postgres
-password: admin
-)
+dupa instalare intra in folder-ul backend/APIS<br/>
+si ruleaza comenzile:<br/>
 
-dupa instalare intra in folder-ul backend/APIS
-si ruleaza comenzile:
-
-gem install bundler
-bundle install
-rails db:create
-rails db:migrate
+<br/>
+gem install bundler <br/>
+bundle install <br/>
+rails db:create <br/>
+rails db:migrate <br/>
 
 apoi dupa ce sunt instalate se poate porni serverul cu comanda
-
-rails s
+<br/>
+rails s<br/>
 
 dupa poti intra pe index din frontend sa te inregistrezi, sa creezi produse etc....
