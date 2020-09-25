@@ -31,14 +31,14 @@ rails s<br/>
 http://localhost:3000/authenticate.json
 type: POST<br/>
 params:<br/>
-{
+{<br/>
 	"email": "smt@smt.com",<br/>
 	"password": "12345"<br/>
 }<br/>
 http://localhost:3000/user/sign_up.json<br/>
 type: POST<br/>
 params:<br/>
-{
+{<br/>
 	"email": "smt@smt.com",<br/>
 	"password": "12345",<br/>
 	"first_name": "whatever",<br/>
