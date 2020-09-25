@@ -63,7 +63,8 @@ type: GET<br/>
 params:<br/>
 {<br/>
     "page": 1,<br/>
-    "per_page": 9<br/>
+    "per_page": 9,<br/>
+    "product_type": ["prodcas", "pc"]<br/>
 }<br/>
 http://localhost:3000/get_money.json<br/>
 type: GET<br/>
@@ -86,9 +87,24 @@ params:<br/>
     "price": 324,<br/>
     "description": "DADADAFFF",<br/>
     "product_type": "acce",<br/>
-    "discount": 10<br/>
+    "discount": 10,<br/>
+    "size": "500x500",<br/>
+    "culoare": "verde"<br/>
 }<br/>
 
+http://localhost:3000/add_to_favorite<br/>
+type: POST<br/>
+params:<br/>
+{<br/>
+    "product_id": 1<br/>
+}<br/>
+
+http://localhost:3000/get_favorites<br/>
+type: GET<br/>
+params:<br/>
+{<br/>
+<br/>
+}<br/>
 
 dupa poti intra pe index din frontend sa te inregistrezi, sa creezi produse etc....<br/>
 <br/>

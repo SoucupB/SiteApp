@@ -25,4 +25,7 @@ Rails.application.routes.draw do
   post 'delete_cart/:product_id', to: 'cart#remove_from_cart'
 
   get 'get_cart', to: 'cart#get_cart'
+
+  post 'add_to_favorite', to: 'favorite#create'
+  get 'get_favorites', to: 'favorite#get'
 end

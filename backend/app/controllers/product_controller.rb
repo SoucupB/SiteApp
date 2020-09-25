@@ -1,12 +1,12 @@
 class ProductController < ApplicationController
-    before_action :authenticate_request, except: [:get_random_products, :get_gre, :get_random_from_categorys]
+    before_action :authenticate_request, except: [:get_random_products, :get_gre, :get_random_from_categorys, :get]
     include Pagy::Backend
     def create
         user = current_user
         if user.user_type != "distribuitor"
             render json: {error: "Only distributors can add products!"} and return
         end
-        fields = [:name, :amount, :description, :product_type, :price]
+        fields = [:name, :amount, :description, :product_type, :price, :size, :culoare]
         response = {}
         fields.each do |par|
             response[par] = params[:product][par]
@@ -50,10 +50,15 @@ class ProductController < ApplicationController
     def get
         if params[:filter_name].present?
             pagy, products = pagy(sort_by_price(filter_by_string(params[:filter_name], "name")), page: params[:page], items: params[:per_page])
-        elsif params[:filter_category].present?
-            products = filter_by_string(sort_by_price(params[:filter_category]), "product_type")
         else
             pagy, products = pagy(sort_by_price(Product.all), page: params[:page], items: params[:per_page])
+        end
+        if params[:product_type].present?
+            filtered_response = []
+            params[:product_type].each do |type|
+                filtered_response << type
+            end
+            products = products.where(product_type: filtered_response)
         end
         products = get_carts_infos_and_discounts(products)
         render json: {products: products}.merge({total_count: pagy.count, pages: total_pages(pagy.count)})
@@ -105,29 +110,29 @@ class ProductController < ApplicationController
     end
 
     def get_carts_infos_and_discounts(products)
-        cart = current_user.carts.first
+        if current_user.present?
+            cart = current_user.carts.first
+        end
         prod_ids = []
         if !cart.present?
             prod_ids = []
         else
             prod_ids = cart.product_ids.map{ |elem| elem.first}
         end
-        #if current_user.user_type == 'normal'
-            result = []
-            products.each do |prod|
-                disc = {"discount": 0, 'discounted_sum': prod.price}
-                if prod.discount.present?
-                    disc['discount'] = prod.discount.value
-                    disc['discounted_sum'] = (1.0 - prod.discount.value / 100.0) * prod.price
-                end
-                cart_flag = {"is_in_cart": false}
-                if is_in_cart(prod.id, prod_ids)
-                    cart_flag["is_in_cart"] = true
-                end
-                result.append(prod.attributes.merge(cart_flag).merge(disc))
+        result = []
+        products.each do |prod|
+            disc = {"discount": 0, 'discounted_sum': prod.price}
+            if prod.discount.present?
+                disc['discount'] = prod.discount.value
+                disc['discounted_sum'] = (1.0 - prod.discount.value / 100.0) * prod.price
             end
-            products = result
-       # end
+            cart_flag = {"is_in_cart": false}
+            if is_in_cart(prod.id, prod_ids)
+                cart_flag["is_in_cart"] = true
+            end
+            result.append(prod.attributes.merge(cart_flag).merge(disc))
+        end
+        products = result
         return products
     end
 
