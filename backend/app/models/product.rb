@@ -6,19 +6,13 @@ class Product < ApplicationRecord
     include Rails.application.routes.url_helpers
 
     def self.generate_products(amount)
-        random_rescriptions = ['A laptop (also laptop computer), often called a notebook, is a small, portable personal computer',
-                               'typically having a thin LCD or LED computer screen mounted on the inside of the upper lid',
-                               'Laptops combine all the input/output components and capabilities of a desktop computer, including the display screen, speakers, a keyboard',
-                               'Design elements, form factor and construction can also vary significantly between models depending on intended use',
-                               'Examples of specialized models of laptops include rugged notebooks for use in construction or military applications',
-                               'Portable computers, which later developed into modern laptops, were originally considered']
-        names = ["Laptop", "Blender", "Aragaz", "Telefon", "PlayStation"]
-        link_names = {"Laptop": ["lap2.jpg", "lap.jpg", "lap3.jpg", "lap4.jpg"],
-                        "Blender": ["blender.jpg", "blender2.jpg", "blender3.jpg"],
-                        "Aragaz": ["araga2.jpg", "aragaz1.jpg", "aragaz3.jpg"],
-                        "Telefon": ["iphone.jpg"],
-                        "PlayStation": ["game1.jpg"]}
-       # photos = ['lap.jpg', 'lap2.jpg', 'lap3.jpg', 'lap4.jpg']
+        random_rescriptions = ['Ai gresie ei portanta',
+                               'Vrei bataie, pune gresie-n baie',
+                               'Cine are faianta isi da mare importanta']
+        names = ["Faianta", "Gresie"]
+        link_names = {"Faianta": ["faianta-baie-maro.jpg", "faianta-baie-violet.jpg", "faianta-bucatarie-gri.jpg",
+                                  "faianta-bucatarie-negru.jpg", "faianta-hol-maro.jpg", "faianta-living-gri.jpg"],
+                        "Gresie": ["gresie-baie-gri.jpg", "gresie-baie-maro.jpg", "gresie-baie-roz.jpg", "gresie-bucatarie-gri.jpg", "gresie-hol-maro.jpg"]}
         product_types = ['telefon', 'pc', 'jocuri', 'elec', 'haindeb', 'hainef', 'hainec', 'accmobile', 'accb', 'accf', 'accc', 'prodcas', 'prodbuc']
         (1..amount).each do |index|
             product_name = names.sample
