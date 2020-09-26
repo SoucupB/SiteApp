@@ -19,7 +19,7 @@ class Product < ApplicationRecord
             product = Product.create(product_type: product_types.sample, name: product_name, price: rand(50..500), description: random_rescriptions.sample, amount: rand(1..10), user_id: User.second.id)
             product.add_to_category
             random_photo = link_names[product_name.to_sym].sample
-            product.photo.attach(io: File.open('../../Photos/' + random_photo), filename: random_photo)
+            product.photo.attach(io: File.open('../Photos/' + random_photo), filename: random_photo)
             product.img_url = "http://localhost:3000/" + Rails.application.routes.url_helpers.rails_blob_url(product.photo, disposition: "attachment", only_path: true) if product.photo.attached?
             product.save
             Discount.create(product_id: product.id, value: rand(0..15))
