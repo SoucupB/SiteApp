@@ -18,10 +18,10 @@ function get_ads() {
         url: 'http://localhost:3000/ads_products.json',
         data: {number: 2},
         success: function( data ) {
-            for(var i = 0; i < data['ads'].length; i++) {
-                adds(data['ads'][i]['name'], data['ads'][i]['img_url'], data['ads'][i]['value'],
-                data['ads'][i]['description'], data['ads'][i]['price'], data['ads'][i]['discount'], data['ads'][i]['discounted_sum'])
-            }
+            //for(var i = 0; i < data['ads'].length; i++) {
+            adds(data['ads'][0]['name'], data['ads'][0]['img_url'], data['ads'][0]['value'],
+            data['ads'][0]['description'], data['ads'][0]['price'], data['ads'][0]['discount'], data['ads'][0]['discounted_sum'])
+            //}
         },
         dataType: 'json'
     })

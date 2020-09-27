@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Bootstrap E-Commerce Template- Shop</title>
+    <title>Impexcera Lux</title>
     <!-- Bootstrap core CSS -->
     <link href="assets/css/bootstrap.css" rel="stylesheet">
     <!-- Fontawesome core CSS -->
@@ -17,7 +17,7 @@
     <!-- custom CSS here -->
     <link href="assets/css/style.css" rel="stylesheet" />
 </head>
-<body>
+<body style="background-color:rgb(243, 243, 243);">
     <nav class="navbar navbar-default" role="navigation">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -27,10 +27,11 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#"><strong>Cool</strong> mag</a>
+                <a class="navbar-brand" href="#"><strong>IMPEXCERA</strong> LUX</a>
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right", id = 'navbar'>
+                    <li><a href="3D.html">3D Tour</a></li>
                     <li><a href="#" id = 'funds'>Funds: </a></li>
                     <li><a href="../sign_up.html">Signup</a></li>
                     <li><a onclick = 'logout()' href="#">Logout</a></li>
@@ -48,13 +49,13 @@
     <div class="container">
         <div class="row">
             <div class="col-md-9">
-                <div class="well well-lg offer-box text-center">
+                <!--div class="well well-lg offer-box text-center">
 
 
                    Today's Offer : &nbsp; <span class="glyphicon glyphicon-cog"></span>&nbsp;All this products might be on sale so don't miss the oportunity!
 
 
-                </div>
+                </div-->
                 <div class="main box-border">
                     <div id="mi-slider" class="mi-slider">
                         <ul id = 'slider_elect'>
@@ -64,9 +65,9 @@
                         <ul id = 'slider_accesorii'>
                         </ul>
                         <nav>
-                            <a href="#">Electronics</a>
-                            <a href="#">Clothing</a>
-                            <a href="#">Accessories</a>
+                            <a href="#">Baie</a>
+                            <a href="#">Bucatarie</a>
+                            <a href="#">Hol si Living</a>
                             <!-- <a href="#">Bags</a> -->
                         </nav>
                     </div>
@@ -84,78 +85,57 @@
         <div class="row">
             <div class="col-md-3">
                 <div>
-                    <a href="#" class="list-group-item active">Electronics
+                    <a href="#" class="list-group-item active">Bucatarie 
                     </a>
                     <ul class="list-group">
 
-                        <li class="list-group-item">Mobile
-      <span class="label label-primary pull-right" id = 'Mobile'>0</span>
+                        <li class="list-group-item">Gresie
+                            <span class="label label-primary pull-right" id = 'Mobile'>0</span>
                         </li>
-                        <li class="list-group-item">Computers
+                        <li class="list-group-item">Faianta
                             <span class="label label-success pull-right" id = 'Computers'>0</span>
                         </li>
-                        <li class="list-group-item">Appliances
-                             <span class="label label-info pull-right" id = 'Appliances'>0</span>
-                        </li>
-                        <li class="list-group-item">Games & Entertainment
-                             <span class="label label-success pull-right" id = 'Games & Entertainment'>0</span>
-                        </li>
                     </ul>
                 </div>
                 <!-- /.div -->
                 <div>
-                    <a href="#" class="list-group-item active list-group-item-success">Clothing & Wears
+                    <a href="#" class="list-group-item active list-group-item-success">Baie
                     </a>
                     <ul class="list-group">
 
-                        <li class="list-group-item">Men's Clothing
+                        <li class="list-group-item">Gresie
                              <span class="label label-danger pull-right" id = "Men's Clothing">0</span>
                         </li>
-                        <li class="list-group-item">Women's Clothing
+                        <li class="list-group-item">Faianta
                              <span class="label label-success pull-right" id = "Women's Clothing">0</span>
-                        </li>
-                        <li class="list-group-item">Kid's Wear
-                             <span class="label label-info pull-right" id = "Kid's Wear">0</span>
                         </li>
 
                     </ul>
                 </div>
                 <!-- /.div -->
                 <div>
-                    <a href="#" class="list-group-item active">Accessaries & Extras
+                    <a href="#" class="list-group-item active">Hol si Living
                     </a>
                     <ul class="list-group">
-                        <li class="list-group-item">Mobile Accessaries
+                        <li class="list-group-item">Gresie
                              <span class="label label-warning pull-right" id = "Mobile Accessaries">0</span>
                         </li>
-                        <li class="list-group-item">Men's Accessaries
+                        <li class="list-group-item">Faianta
                              <span class="label label-success pull-right" id = "Men's Accessaries">0</span>
-                        </li>
-                        <li class="list-group-item">Women's Accessaries
-                             <span class="label label-info pull-right" id = "Women's Accessaries">0</span>
-                        </li>
-                        <li class="list-group-item">Kid's Accessaries
-                             <span class="label label-primary pull-right" id = "Kid's Accessaries">0</span>
-                        </li>
-                        <li class="list-group-item">Home Products
-                             <span class="label label-danger pull-right" id = "Home Products">0</span>
-                        </li>
-                        <li class="list-group-item">Kitchen Products
-                             <span class="label label-warning pull-right" id = "Kitchen Products">0</span>
                         </li>
                     </ul>
                 </div>
                 <!-- /.div -->
-                <div>
+                <!--div>
                     <ul class="list-group">
                         <li class="list-group-item list-group-item-success"><a href="#">New Offer's Coming </a></li>
                         <li class="list-group-item list-group-item-info"><a href="#">New Products Added</a></li>
                         <li class="list-group-item list-group-item-warning"><a href="#">Ending Soon Offers</a></li>
                         <li class="list-group-item list-group-item-danger"><a href="#">Just Ended Offers</a></li>
                     </ul>
-                </div>
+                </div-->
                 <!-- /.div -->
-                <div class="well well-lg offer-box offer-colors">
+                <!--div class="well well-lg offer-box offer-colors">
 
 
                     <span class="glyphicon glyphicon-star-empty"></span>25 % off  , GRAB IT
@@ -170,25 +150,19 @@
                         </div>
                     </div>
                     <a href="#">click here to know more </a>
-                </div>
+                </div-->
                 <!-- /.div -->
             </div>
             <!-- /.col -->
+            <!-- aci trebuie puse produsele  -->
             <div class="col-md-9">
-                <div>
-                    <ol class="breadcrumb">
-                        <li><a href="#">Home</a></li>
-                        <li class="active">Electronics</li>
-                    </ol>
-                </div>
-                <!-- /.div -->
                 <div class="row">
                     <div class="btn-group alg-right-pad">
                         <button type="button" class="btn btn-default"><strong id = 'total_count'></strong>items</button>
                         <div class="btn-group">
                             <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
                                 Sort Products &nbsp;
-      <span class="caret"></span>
+                                <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu">
                                 <li><a onclick = 'show_sorted_methods("price_low")'>By Price Low</a></li>
@@ -198,62 +172,26 @@
                         </div>
                     </div>
                 </div>
-                <!-- /.row -->
-                <div class="row" id = 'total_pages'>
-                </div>
                 <div class="row" id = 'market'>
                 </div>
+                
+                <div style="margin: auto; width: 60%">
+                    <div class="row" id = 'total_pages'>
+                    </div>
+                </div>
+                <!-- /.div -->
+                
+                <!-- /.row -->
             </div>
             <!-- /.col -->
         </div>
         <!-- /.row -->
     </div>
     <!-- /.container -->
-    <div class="col-md-12 download-app-box text-center">
-
-        <span class="glyphicon glyphicon-download-alt"></span>Download Our Android App and Get 10% additional Off on all Products . <a href="#" class="btn btn-danger btn-lg">DOWNLOAD  NOW</a>
-
-    </div>
 
     <!--Footer -->
     <div class="col-md-12 footer-box">
 
-
-        <div class="row small-box ">
-            <strong>Mobiles :</strong> <a href="#">samsung</a> |  <a href="#">Sony</a> | <a href="#">Microx</a> |
-            <a href="#">samsung</a> |  <a href="#">Sony</a> | <a href="#">Microx</a> |<a href="#">samsung</a> |
-              <a href="#">Sony</a> | <a href="#">Microx</a> |<a href="#">samsung</a> |  <a href="#">Sony</a> |
-            <a href="#">Microx</a> |<a href="#">samsung</a> |  <a href="#">Sony</a> | <a href="#">Microx</a> |
-            <a href="#">samsung</a> |  <a href="#">Sony</a> | <a href="#">Microx</a> |<a href="#">samsung</a> |
-            <a href="#">Sony</a> | <a href="#">Microx</a> | view all items
-
-        </div>
-        <div class="row small-box ">
-            <strong>Laptops :</strong> <a href="#">samsung</a> |  <a href="#">Sony</a> | <a href="#">Microx Laptops</a> |
-            <a href="#">samsung</a> |  <a href="#">Sony</a> | <a href="#">Microx</a> |<a href="#">samsung</a> |
-              <a href="#">Sony Laptops</a> | <a href="#">Microx</a> |<a href="#">samsung</a> |  <a href="#">Sony</a> |
-            <a href="#">Microx</a> |<a href="#">samsung</a> |  <a href="#">Sony</a> | <a href="#">Microx</a> |
-            <a href="#">samsung</a> |  <a href="#">Sony</a> | <a href="#">Microx</a> |<a href="#">samsung</a> |
-            <a href="#">Sony</a> | <a href="#">Microx</a> | view all items
-        </div>
-        <div class="row small-box ">
-            <strong>Tablets : </strong><a href="#">samsung</a> |  <a href="#">Sony Tablets</a> | <a href="#">Microx</a> |
-            <a href="#">samsung </a>|  <a href="#">Sony</a> | <a href="#">Microx</a> |<a href="#">samsung</a> |
-              <a href="#">Sony</a> | <a href="#">Microx</a> |<a href="#">samsung Tablets</a> |  <a href="#">Sony</a> |
-            <a href="#">Microx</a> |<a href="#">samsung Tablets</a> |  <a href="#">Sony</a> | <a href="#">Microx</a> |
-            <a href="#">samsung</a> |  <a href="#">Sony</a> | <a href="#">Microx</a> |<a href="#">samsung</a> |
-            <a href="#">Sony</a> | <a href="#">Microx Tablets</a> | view all items
-
-        </div>
-        <div class="row small-box pad-botom ">
-            <strong>Computers :</strong> <a href="#">samsung</a> |  <a href="#">Sony</a> | <a href="#">Microx</a> |
-            <a href="#">samsung Computers</a> |  <a href="#">Sony</a> | <a href="#">Microx</a> |<a href="#">samsung</a> |
-              <a href="#">Sony</a> | <a href="#">Microx</a> |<a href="#">samsung</a> |  <a href="#">Sony</a> |
-            <a href="#">Microx Computers</a> |<a href="#">samsung Computers</a> |  <a href="#">Sony</a> | <a href="#">Microx</a> |
-            <a href="#">samsung</a> |  <a href="#">Sony</a> | <a href="#">Microx Computers</a> |<a href="#">samsung</a> |
-            <a href="#">Sony</a> | <a href="#">Microx</a> | view all items
-
-        </div>
         <div class="row">
             <div class="col-md-4">
                 <strong>Send a Quick Query </strong>
@@ -285,27 +223,35 @@
             </div>
 
             <div class="col-md-4">
-                <strong>Our Location</strong>
+                <strong>Our Locations</strong>
                 <hr>
                 <p>
-                     234, New york Street,<br />
-                                    Just Location, USA<br />
-                    Call: +09-456-567-890<br>
-                    Email: info@yourdomain.com<br>
+                    București
+                    Strada Preciziei 13, Sector 6
+                    Telefon: 0742600400<br>
+                    
+                    Cluj - Floresti
+                    Telefon: 0740215970, 0741168700<br>
+                    
+                    Iasi - Cristesti
+                    Telefon: 0748224530<br>
+                                     
+                    Email: impexceraluxcluj@gmail.com
                 </p>
 
-                2014 www.yourdomain.com | All Right Reserved
+                2020 www.impexceralux.ro | All Right Reserved
             </div>
             <div class="col-md-4 social-box">
                 <strong>We are Social </strong>
                 <hr>
-                <a href="#"><i class="fa fa-facebook-square fa-3x "></i></a>
-                <a href="#"><i class="fa fa-twitter-square fa-3x "></i></a>
+                <a href="https://www.facebook.com/impexceraluxcluj"><i class="fa fa-facebook-square fa-3x "></i></a>
+                <!--a href="#"><i class="fa fa-twitter-square fa-3x "></i></a-->
                 <a href="#"><i class="fa fa-google-plus-square fa-3x c"></i></a>
                 <a href="#"><i class="fa fa-linkedin-square fa-3x "></i></a>
-                <a href="#"><i class="fa fa-pinterest-square fa-3x "></i></a>
+                <a href="https://www.instagram.com/impexcera.moldova/"> <i class="fa fa-instagram fa-3x"></i></a>
+                <!--a href="#"><i class="fa fa-pinterest-square fa-3x "></i></a-->
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur nec nisl odio. Mauris vehicula at nunc id posuere. Curabitur nec nisl odio. Mauris vehicula at nunc id posuere.
+                    S.C. IMPEXCERA LUX S.R.L. este importator de faianta si gresie portelanata, unic distribuitor in Romania a produselor ATEM SI InterCerama (Ucraina).
                 </p>
             </div>
         </div>
@@ -345,7 +291,7 @@
     <script src = '../scripts/global.js'></script>
     <!-- /.col -->
     <div class="col-md-12 end-box ">
-        &copy; 2014 | &nbsp; All Rights Reserved | &nbsp; www.yourdomain.com | &nbsp; 24x7 support | &nbsp; Email us: info@yourdomain.com
+        &copy; 2020 | &nbsp; All Rights Reserved | &nbsp; www.impexceralux.ro | &nbsp; 24x7 support | &nbsp; Email us: impexceraluxcluj@gmail.com
     </div>
     <!-- /.col -->
     <!--Footer end -->
