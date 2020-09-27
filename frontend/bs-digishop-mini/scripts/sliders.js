@@ -7,6 +7,8 @@ window.onload = function() {
     jQuery.support.cors = true
     add_product_button();
     add_pay_cart_button();
+    is_logged_in();
+    funds_button();
     $.when(
         slider_requests('electronice', 'slider_elect'),
         slider_requests('haine', 'slider_haine'),
@@ -18,6 +20,15 @@ window.onload = function() {
     )
 }
 
+function funds_button() {
+    if(secret_token()) {
+        var slider_element = document.getElementById('navbar');
+        stre = '<li><a href="#" id = "funds">Funds: </a></li>'
+        var element = htmlToElement(stre)
+        slider_element.appendChild(element);
+    }
+}
+
 function add_counts(products) {
     var prods = Object.keys(products)
     for(var i = 0; i < prods.length; i++) {
@@ -25,6 +36,21 @@ function add_counts(products) {
             var elem = document.getElementById(categ_dicts[prods[i]]);
             elem.innerHTML = products[prods[i]];
         }
+    }
+}
+
+function is_logged_in() {
+    if(!secret_token()) {
+        var slider_element = document.getElementById('navbar');
+        stre = '<li><a href="../index.html">Login</a></li>'
+        var element = htmlToElement(stre)
+        slider_element.appendChild(element);
+    }
+    else {
+        var slider_element = document.getElementById('navbar');
+        stre = '<li><a onclick = "logout()" href="#">Logout</a></li>'
+        var element = htmlToElement(stre)
+        slider_element.appendChild(element);
     }
 }
 
