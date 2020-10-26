@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  colection_type: MyString
+  description: MyString
+  imgages: MyText
+  products_ids: MyText
+
+two:
+  colection_type: MyString
+  description: MyString
+  imgages: MyText
+  products_ids: MyText

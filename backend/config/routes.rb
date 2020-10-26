@@ -28,4 +28,6 @@ Rails.application.routes.draw do
 
   post 'add_to_favorite', to: 'favorite#create'
   get 'get_favorites', to: 'favorite#get'
+  post 'add_data_to_database', to: 'product#add_data_to_database'
+  get 'get_all', to: 'product#get_all_products'
 end

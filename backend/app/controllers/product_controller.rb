@@ -1,5 +1,5 @@
 class ProductController < ApplicationController
-    before_action :authenticate_request, except: [:get_random_products, :get_gre, :get_random_from_categorys, :get]
+    before_action :authenticate_request, except: [:get_random_products, :get_gre, :get_random_from_categorys, :get, :add_data_to_database, :get_all_products]
     include Pagy::Backend
     def create
         user = current_user
@@ -64,9 +64,23 @@ class ProductController < ApplicationController
         render json: {products: products}.merge({total_count: pagy.count, pages: total_pages(pagy.count)})
     end
 
+    def get_all_products
+        render json: {products: Product.all}
+    end
+
     def get_random_products
         products = Product.order("RANDOM()").limit(params[:number])
         render json: {products: products}
+    end
+
+    def add_data_to_database
+        params["colectii"].each do |element|
+            response = Seeds.generate_products_script(element["elemente"], element)
+            if response == 0
+                render json: {"Error": "Error in saving the data"} and return
+            end
+        end
+        render json: {"Succes": "Succes"} and return
     end
 
     def get_gre
