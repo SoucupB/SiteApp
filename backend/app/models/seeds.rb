@@ -2,7 +2,9 @@ class Seeds < ApplicationRecord
     include Rails.application.routes.url_helpers
 
     def self.generate_products_script(dictionary, collection_param)
-        collection = Colection.new(colection_type: collection_param[:colectie], description: collection_param[:descriere], products_ids: [], photos_url: [])
+        collection = Colection.new(colection_type: collection_param[:colectie], 
+                                   description: collection_param[:descriere], products_ids: [], photos_url: [],
+                                   tip: collection_param[:tip])
         if !collection.save
             return 0
         end

@@ -48,20 +48,12 @@ class ProductController < ApplicationController
     end
 
     def get
-        if params[:filter_name].present?
-            pagy, products = pagy(sort_by_price(filter_by_string(params[:filter_name], "name")), page: params[:page], items: params[:per_page])
+        if params[:filter_name].present? && params[:value].present?
+            pagy, products = pagy(filter_by_string(params[:filter_name], params[:value]), page: params[:page], items: params[:per_page])
         else
-            pagy, products = pagy(sort_by_price(Product.all), page: params[:page], items: params[:per_page])
+            pagy, products = pagy(Product.all, page: params[:page], items: params[:per_page])
         end
-        if params[:product_type].present?
-            filtered_response = []
-            params[:product_type].each do |type|
-                filtered_response << type
-            end
-            products = products.where(product_type: filtered_response)
-        end
-        products = get_carts_infos_and_discounts(products)
-        render json: {products: products}.merge({total_count: pagy.count, pages: total_pages(pagy.count)})
+        render json: {products: products}
     end
 
     def get_all_products
@@ -158,7 +150,13 @@ class ProductController < ApplicationController
     end
 
     def filter_by_string(string, type)
-        prod = Product.where(type + " ILIKE ?", '%' + string + '%')
+        if string == "culoare"
+            prod = Product.where(culoare: type)
+        elsif string == "dimensiuni"
+            prod = Product.where(dimensiuni: type)
+        else
+            prod = Product.where(type + " ILIKE ?", '%' + string + '%')
+        end
     end
 
     def is_in_cart(product_id, array)

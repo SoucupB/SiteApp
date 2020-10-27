@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   post 'product/:user_id/create', to: 'product#create'
 
-  get 'products', to: 'product#get_random_products'
+  get 'products', to: 'product#get'
 
   get 'ads_products', to: 'product#get_gre'
 
@@ -30,4 +30,6 @@ Rails.application.routes.draw do
   get 'get_favorites', to: 'favorite#get'
   post 'add_data_to_database', to: 'product#add_data_to_database'
   get 'get_all', to: 'product#get_all_products'
+  get 'get_collections', to: 'colection#get'
+  get 'collection/:id', to: 'colection#get_products'
 end
