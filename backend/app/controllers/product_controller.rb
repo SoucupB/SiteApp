@@ -1,5 +1,7 @@
 class ProductController < ApplicationController
-    before_action :authenticate_request, except: [:get_random_products, :get_gre, :get_random_from_categorys, :get, :add_data_to_database, :get_all_products]
+    before_action :authenticate_request, except: [:get_random_products, :get_gre,
+                                                  :get_random_from_categorys, :get,
+                                                  :add_data_to_database, :get_all_products, :get_products]
     include Pagy::Backend
     def create
         user = current_user
@@ -45,6 +47,11 @@ class ProductController < ApplicationController
             render json: {error: "No products in the market"} and return
         end
         render json: {products: prod} and return
+    end
+
+    def get_products
+        pagy, products = pagy(sort_by_price(filter_by_string(params[:filter_name], "name")), page: params[:page], items: params[:per_page])
+        render json: {products: "DADADA"};
     end
 
     def get

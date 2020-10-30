@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   post 'drop/cart', to: 'cart#drop_cart'
   post 'add_funds', to: 'user#add_funds'
   get 'paginates/products', to: 'product#get'
+  get 'get_all_products', to: 'product#get_products'
 
   get 'category/products', to: 'product#get_category_numbers'
   get 'random_products', to: 'product#get_random_from_categorys'
