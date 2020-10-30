@@ -106,6 +106,27 @@ params:<br/>
 <br/>
 }<br/>
 
+http://localhost:3000/get_all_products.json?page=1&per_page=9&culoare[]=light_gray&culoare[]=violet&dimensiuni=43x43<br/>
+type: GET<br/>
+params:<br/>
+{<br/>
+<br/>
+}<br/>
+
+http://localhost:3000/get_collections.json?page=1&per_page=9<br/>
+type: GET<br/>
+params:<br/>
+{<br/>
+<br/>
+}<br/>
+
+http://localhost:3000/collection/36.json?per_page=9&page=1&culoare[]=violet<br/>
+type: GET<br/>
+params:<br/>
+{<br/>
+<br/>
+}<br/>
+
 dupa poti intra pe index din frontend sa te inregistrezi, sa creezi produse etc....<br/>
 <br/>
 <br/>
