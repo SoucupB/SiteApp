@@ -16,19 +16,6 @@ class UserController < ApplicationController
         User.create(email: email, password: password, first_name: first_name, last_name: last_name, user_type: user_type)
         render json: json_responce and return
     end
-
-    def add_funds
-        funds = params[:funds]
-        current_user.funds += funds
-        current_user.save
-        json_responce = {"response": "Funds added succesfully!"}
-        render json: json_responce and return
-    end
-
-    def get_funds
-        render json: {funds: current_user.funds}
-    end
-
     private
 
     def check_params_presence

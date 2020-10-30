@@ -1,8 +1,6 @@
 class Product < ApplicationRecord
     has_one_attached :photo
     belongs_to :colection
-    #has_one :discount
-    #belongs_to :user
 
     include Rails.application.routes.url_helpers
 

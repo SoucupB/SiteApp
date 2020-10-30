@@ -1,2 +1,0 @@
-class ProdCount < ApplicationRecord
-end

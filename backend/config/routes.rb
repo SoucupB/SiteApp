@@ -7,30 +7,10 @@ Rails.application.routes.draw do
 
   post 'product/:user_id/create', to: 'product#create'
 
-  get 'products', to: 'product#get'
-
-  get 'ads_products', to: 'product#get_gre'
-
-  get 'get_money', to: 'user#get_funds'
-
-  post 'cart/:product_id', to: 'cart#add_to_cart'
-  post 'pay/cart', to: 'cart#pay_cart'
-  post 'drop/cart', to: 'cart#drop_cart'
-  post 'add_funds', to: 'user#add_funds'
-  get 'paginates/products', to: 'product#get'
   get 'get_all_products', to: 'product#get_products'
+  get 'get_all_dimensions', to: 'product#get_total_dimensions'
 
-  get 'category/products', to: 'product#get_category_numbers'
-  get 'random_products', to: 'product#get_random_from_categorys'
-
-  post 'delete_cart/:product_id', to: 'cart#remove_from_cart'
-
-  get 'get_cart', to: 'cart#get_cart'
-
-  post 'add_to_favorite', to: 'favorite#create'
-  get 'get_favorites', to: 'favorite#get'
   post 'add_data_to_database', to: 'product#add_data_to_database'
-  get 'get_all', to: 'product#get_all_products'
   get 'get_collections', to: 'colection#get'
   get 'collection/:id', to: 'colection#get_products'
 end
