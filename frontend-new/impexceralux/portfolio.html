@@ -28,6 +28,7 @@
     <link rel="stylesheet" href="css/custom.css">
 
     <!-- Modernizer for Portfolio -->
+    <script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="js/modernizer.js"></script>
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -146,10 +147,16 @@
             </div>
 
             <hr class="invis">
-
+            <!-- <script type="module" >
+                $(document).ready(function(){
+                    $.getJSON("../date_impexcera/dateDB.json", function(data){
+                        console.log(data.colectii[0]); // Prints: Harry // Prints: 14
+                    }).fail(function(){
+                        console.log("An error has occurred.");
+                    });
+                });
+            </script> -->
             <div id="da-thumbs" class="da-thumbs portfolio">
-                <script src='scripts/Utils.js'></script>
-                <script src='scripts/PorfolioPopulate.js'></script>
                 <div class="post-media pitem item-w1 item-h1 cat1">
                     <a href="uploads/portfolio_01.jpg" data-rel="prettyPhoto[gal]">
                         <img src="uploads/portfolio_01.jpg" alt="" class="img-responsive">
@@ -489,9 +496,13 @@
     <!-- ALL JS FILES -->
     <script src="js/all.js"></script>
     <!-- ALL PLUGINS -->
-    <script src="js/custom.js"></script>
-    <script src="js/portfolio.js"></script>
-    <script src="js/hoverdir.js"></script>    
+    <!-- <script src="js/custom.js"></script> -->
+    <script src='scripts/Utils.js'></script>
+    <script src='scripts/PorfolioPopulate.js'></script>
+    <!-- <script src="js/portfolio.js"></script>
+    <script src="js/hoverdir.js"></script> -->
+    
+    
 
 </body>
 </html>
