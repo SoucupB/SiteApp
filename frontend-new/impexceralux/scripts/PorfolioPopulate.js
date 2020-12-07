@@ -13,18 +13,52 @@ function createHtmlImage(id, colectie, descriere, image) {
     return createElementFromHTML(stre);
 }
 
+function simpleRequest() {
+    $.ajax({
+        type: "GET",
+        url: 'http://localhost:3000/portfolio?id=5',
+        data: {},
+        success: function( data ) {
+            console.log(data);
+        },
+        dataType: 'json'
+    });
+}
+
+function fullRequest() {
+    $.ajax({
+        type: "GET",
+        url: 'http://localhost:3000/portfolio_all?page=1&per_page=13',
+        data: {},
+        success: function( data ) {
+            let container = document.getElementById("da-thumbs")
+            console.log(data);
+            for(var i = 0; i < data.length; i++) {
+                if(data[i]['img'] != null) {
+                    var element = createHtmlImage(i, data[i]['colectie'], data[i]['descriere'], "../date_impexcera/" + data[i]['img'][0]);
+                    container.appendChild(element);
+                }
+            }
+            customs();
+            queryTransform();
+            hoveriing();
+        },
+        dataType: 'json'
+    });
+}
+
 function hoveriing() {
     ;( function( $, window, undefined ) {
-	
+
         'use strict';
-    
+
         $.HoverDir = function( options, element ) {
-            
+
             this.$el = $( element );
             this._init( options );
-    
+
         };
-    
+
         // the options
         $.HoverDir.defaults = {
             speed : 300,
@@ -32,11 +66,11 @@ function hoveriing() {
             hoverDelay : 0,
             inverse : false
         };
-    
+
         $.HoverDir.prototype = {
-    
+
             _init : function( options ) {
-                
+
                 // options
                 this.options = $.extend( true, {}, $.HoverDir.defaults, options );
                 // transition properties
@@ -45,77 +79,77 @@ function hoveriing() {
                 this.support = Modernizr.csstransitions;
                 // load the events
                 this._loadEvents();
-    
+
             },
             _loadEvents : function() {
-    
+
                 var self = this;
-                
+
                 this.$el.on( 'mouseenter.hoverdir, mouseleave.hoverdir', function( event ) {
-                    
+
                     var $el = $( this ),
                         $hoverElem = $el.find( 'div' ),
                         direction = self._getDir( $el, { x : event.pageX, y : event.pageY } ),
                         styleCSS = self._getStyle( direction );
-                    
+
                     if( event.type === 'mouseenter' ) {
-                        
+
                         $hoverElem.hide().css( styleCSS.from );
                         clearTimeout( self.tmhover );
-    
+
                         self.tmhover = setTimeout( function() {
-                            
+
                             $hoverElem.show( 0, function() {
-                                
+
                                 var $el = $( this );
                                 if( self.support ) {
                                     $el.css( 'transition', self.transitionProp );
                                 }
                                 self._applyAnimation( $el, styleCSS.to, self.options.speed );
-    
+
                             } );
-                            
-                        
+
+
                         }, self.options.hoverDelay );
-                        
+
                     }
                     else {
-                    
+
                         if( self.support ) {
                             $hoverElem.css( 'transition', self.transitionProp );
                         }
                         clearTimeout( self.tmhover );
                         self._applyAnimation( $hoverElem, styleCSS.from, self.options.speed );
-                        
+
                     }
-                        
+
                 } );
-    
+
             },
             // credits : http://stackoverflow.com/a/3647634
             _getDir : function( $el, coordinates ) {
-                
+
                 // the width and height of the current div
                 var w = $el.width(),
                     h = $el.height(),
-    
+
                     // calculate the x and y to get an angle to the center of the div from that x and y.
                     // gets the x value relative to the center of the DIV and "normalize" it
                     x = ( coordinates.x - $el.offset().left - ( w/2 )) * ( w > h ? ( h/w ) : 1 ),
                     y = ( coordinates.y - $el.offset().top  - ( h/2 )) * ( h > w ? ( w/h ) : 1 ),
-                
+
                     // the angle and the direction from where the mouse came in/went out clockwise (TRBL=0123);
                     // first calculate the angle of the point,
                     // add 180 deg to get rid of the negative values
                     // divide by 90 to get the quadrant
                     // add 3 and do a modulo by 4  to shift the quadrants to a proper clockwise TRBL (top/right/bottom/left) **/
                     direction = Math.round( ( ( ( Math.atan2(y, x) * (180 / Math.PI) ) + 180 ) / 90 ) + 3 ) % 4;
-                
+
                 return direction;
-                
+
             },
             _getStyle : function( direction ) {
-                
+
                 var fromStyle, toStyle,
                     slideFromTop = { left : '0px', top : '-100%' },
                     slideFromBottom = { left : '0px', top : '100%' },
@@ -123,7 +157,7 @@ function hoveriing() {
                     slideFromRight = { left : '100%', top : '0px' },
                     slideTop = { top : '0px' },
                     slideLeft = { left : '0px' };
-                
+
                 switch( direction ) {
                     case 0:
                         // from top
@@ -146,85 +180,85 @@ function hoveriing() {
                         toStyle = slideLeft;
                         break;
                 };
-                
+
                 return { from : fromStyle, to : toStyle };
-                        
+
             },
             // apply a transition or fallback to jquery animate based on Modernizr.csstransitions support
             _applyAnimation : function( el, styleCSS, speed ) {
-    
+
                 $.fn.applyStyle = this.support ? $.fn.css : $.fn.animate;
                 el.stop().applyStyle( styleCSS, $.extend( true, [], { duration : speed + 'ms' } ) );
-    
+
             },
-    
+
         };
-        
+
         var logError = function( message ) {
-    
+
             if ( window.console ) {
-    
+
                 window.console.error( message );
-            
+
             }
-    
+
         };
-        
+
         $.fn.hoverdir = function( options ) {
-    
+
             var instance = $.data( this, 'hoverdir' );
-            
+
             if ( typeof options === 'string' ) {
-                
+
                 var args = Array.prototype.slice.call( arguments, 1 );
-                
+
                 this.each(function() {
-                
+
                     if ( !instance ) {
-    
+
                         logError( "cannot call methods on hoverdir prior to initialization; " +
                         "attempted to call method '" + options + "'" );
                         return;
-                    
+
                     }
-                    
+
                     if ( !$.isFunction( instance[options] ) || options.charAt(0) === "_" ) {
-    
+
                         logError( "no such method '" + options + "' for hoverdir instance" );
                         return;
-                    
+
                     }
-                    
+
                     instance[ options ].apply( instance, args );
-                
+
                 });
-            
-            } 
+
+            }
             else {
-            
+
                 this.each(function() {
-                    
+
                     if ( instance ) {
-    
+
                         instance._init();
-                    
+
                     }
                     else {
-    
+
                         instance = $.data( this, 'hoverdir', new $.HoverDir( options, this ) );
-                    
+
                     }
-    
+
                 });
-            
+
             }
-            
+
             return instance;
-            
+
         };
-        
+
     } )( jQuery, window );
-    
+
             $(function() {
                 $('.pitem ').each( function() { $(this).hoverdir(); } );
             });
@@ -234,18 +268,18 @@ function queryTransform() {
     (function ($) {
         var $container = $('.portfolio'),
             colWidth = function () {
-                var w = $container.width(), 
+                var w = $container.width(),
                     columnNum = 1,
                     columnWidth = 50;
                 if (w > 1200) {
                     columnNum  = 5;
-                } 
+                }
                 else if (w > 900) {
                     columnNum  = 3;
-                } 
+                }
                 else if (w > 600) {
                     columnNum  = 2;
-                } 
+                }
                 else if (w > 300) {
                     columnNum  = 1;
                 }
@@ -265,7 +299,7 @@ function queryTransform() {
             }
             function refreshWaypoints() {
                 setTimeout(function() {
-                }, 3000);   
+                }, 3000);
             }
             $('nav.portfolio-filter ul a').on('click', function() {
                 var selector = $(this).attr('data-filter');
@@ -274,7 +308,7 @@ function queryTransform() {
                 $(this).addClass('active');
                 return false;
             });
-            function setPortfolio() { 
+            function setPortfolio() {
                 setColumns();
                 $container.isotope('reLayout');
             }
@@ -309,7 +343,7 @@ function customs() {
     /* ==============================================
         Fixed menu
         =============================================== */
-        
+
         $(window).on('scroll', function () {
             if ($(window).scrollTop() > 50) {
                 $('.header_style_01').addClass('fixed-menu');
@@ -317,12 +351,12 @@ function customs() {
                 $('.header_style_01').removeClass('fixed-menu');
             }
         });
-        
-        
+
+
     /* ==============================================
-            Scroll to top  
+            Scroll to top
         ============================================== */
-            
+
         if ($('#scroll-to-top').length) {
             var scrollTrigger = 100, // px
                 backToTop = function () {
@@ -375,12 +409,12 @@ function customs() {
             $(this).html('0');
             count($(this));
         });
-        
-        
+
+
         /* ==============================================
         FUN FACTS -->
         =============================================== */
-        
+
         $(".slider-wrapper").owlCarousel({
             items: 1,
             nav: true,
@@ -490,7 +524,7 @@ function importJsonData() {
             for(var i = 0; i < colectii.length; i++) {
                 if(colectii[i]['img'] != null) {
                     let element = createHtmlImage(i, colectii[i]['colectie'], colectii[i]['descriere'], "../date_impexcera/" + colectii[i]['img'][0]);
-                    console.log(container.appendChild(element));
+                    //console.log(container.appendChild(element));
                 }
             }
             customs();
@@ -509,7 +543,7 @@ async function createHeadersPortfolio() {
     let container = document.getElementById("da-thumbs")
     for(var i = 0; i < colectii.length; i++) {
         let element = createHtmlImage(i, colectii[i]['colectie'], colectii[i]['descriere']);
-        console.log(container.appendChild(element));
+        //console.log(container.appendChild(element));
     }
     doneConstructingImages = true;
 }
@@ -520,5 +554,6 @@ async function createHeadersPortfolio() {
 //     container.appendChild(element);
 // }
 
-importJsonData();
+//importJsonData();
+fullRequest();
 //createHeadersPortfolio();
