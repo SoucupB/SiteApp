@@ -3,7 +3,7 @@
       {
          "colectie":"batik",
          "tip":"baie",
-         "descriere":"Delicate Irises, intricately made in soft shades, look particularly elegantly framed by a simple ornament of interlacing lines.",
+         "descriere":"Irisurile delicate, realizate în nuante moi, arata deosebit de elegant incadrate intr-un un ornament simplu de linii intretesute.",
          "img":[
             "batik1.jpg",
             "batik2.jpg"
@@ -43,6 +43,57 @@
                "culoare":"violet",
                "img":"5.jpg",
                "dimensiuni":"43x43"
+            }
+         ]
+      },
+      {
+         "colectie":"alladin",
+         "tip":"interior-exterior",
+         "descriere":"Formele geometrice imbinate cu un stil vintage fac din casa ta o arta adevarata.",
+         "img":[
+            "alladin1.jpg"
+         ],
+         "elemente":[
+            {
+               "id":"bl",
+               "categorie":"gresie",
+               "culoare":"albastru",
+               "img":"alladin-bl.jpg",
+               "dimensiuni":"60x60"
+            },
+            {
+               "id":"b",
+               "categorie":"gresie",
+               "culoare":"maro",
+               "img":"alladin-b.jpg",
+               "dimensiuni":"60x60"
+            }
+         ]
+      },
+      {
+         "colectie":"arc",
+         "tip":"interior-exterior",
+         "descriere":"Formele geometrice imbinate cu un stil vintage fac din casa ta o arta adevarata.",
+         "img":[
+            "arc1.jpg",
+            "arc2.jpg",
+            "arc3.jpg",
+            "arc4.jpg"
+         ],
+         "elemente":[
+            {
+               "id":"arc-w",
+               "categorie":"gresie",
+               "culoare":"alb",
+               "img":null,
+               "dimensiuni":"60x60"
+            },
+            {
+               "id":"arc-w",
+               "categorie":"gresie",
+               "culoare":"alb",
+               "img":null,
+               "dimensiuni":"60x120"
             }
          ]
       },
@@ -249,7 +300,7 @@
       },
       {
          "colectie":"mozart",
-         "tip":"interior ",
+         "tip":"interior",
          "descriere":"Albul este culoarea printre alte culori, ale cărei avantaje pot fi listate cel mai mult. Acesta luminează interiorul, îl mărește și îl îmbunătățește. În plus, creează un duo grozav cu orice altă culoare. Pariați pe alb cu plăcile Chopin Decor! Dacă ați numi cinci polonezi care au încântat lumea cu munca sau realizările lor, pianistul nostru remarcabil, Fryderyk Chopin, ar fi cu siguranță printre oamenii pe care i-ați menționat.",
          "img":[
             "mozart_blanco_mate.jpg"
@@ -445,6 +496,78 @@
                "culoare":"auriu",
                "img":"calacatagold1.jpg",
                "dimensiuni":"60x120"
+            }
+         ]
+      },
+      {
+         "colectie":"calacata 200x500",
+         "tip":"interior",
+         "descriere":"Calacata este un dintre cele mai prestigioase pietre din lume",
+         "img":[
+            "calacata200x500.jpg"
+         ],
+         "elemente":[
+            {
+               "id":"cal-c",
+               "categorie":"gresie",
+               "culoare":"crem",
+               "img":null,
+               "dimensiuni":"20x50"
+            },
+            {
+               "id":"cal-c2",
+               "categorie":"gresie",
+               "culoare":"crem",
+               "img":null,
+               "dimensiuni":"30x60"
+            }
+         ]
+      },
+      {
+         "colectie":"florian",
+         "tip":"interior",
+         "descriere":"Structura tesita a faiantei creaza sublim efectul tridimensional.",
+         "img":[
+            "florian1.jpg",
+            "florian2.jpg",
+            "florian3.jpg",
+            "florian4.jpg"
+         ],
+         "elemente":[
+            {
+               "id":"fl-1",
+               "categorie":"faianta",
+               "culoare":"violet",
+               "img":null,
+               "dimensiuni":"10x30"
+            },
+            {
+               "id":"fl-2",
+               "categorie":"faianta",
+               "culoare":"alb",
+               "img":null,
+               "dimensiuni":"10x30"
+            },
+            {
+               "id":"fl-3",
+               "categorie":"faianta",
+               "culoare":"bej",
+               "img":null,
+               "dimensiuni":"10x30"
+            },
+            {
+               "id":"fl-4",
+               "categorie":"faianta",
+               "culoare":"gri",
+               "img":null,
+               "dimensiuni":"10x30"
+            },
+            {
+               "id":"fl-5",
+               "categorie":"faianta",
+               "culoare":"rosu",
+               "img":null,
+               "dimensiuni":"10x30"
             }
          ]
       },
@@ -988,7 +1111,7 @@
       },
       {
          "colectie":"adarve",
-         "tip":"exterior-interior",
+         "tip":"interior-exterior",
          "descriere":"Colecția Adarve este portelanata, poate fi folosite pentru decorarea pereților interni.",
          "img":[
             "adarve_prez.jpg"
@@ -1026,7 +1149,7 @@
       },
       {
          "colectie":"himalaya",
-         "tip":"exterior-interior",
+         "tip":"interior-exterior",
          "descriere":"Aceste plăci sunt bogate în textură și au un finisaj frumos.",
          "img":[
             "amb_himalaya_onice.jpg",
@@ -1148,7 +1271,7 @@
       {
          "colectie":"izmir",
          "tip":"baie",
-         "descriere":"Formele geometrice imbinate cu un stil vintage face din casa ta o arta adevarata.",
+         "descriere":"Formele geometrice imbinate cu un stil vintage fac din casa ta o arta adevarata.",
          "img":[
             "izmir.jpg",
             "izmir1.jpg"
@@ -1312,6 +1435,136 @@
                "culoare":"maro",
                "img":"metro_032.jpg",
                "dimensiuni":"23x50"
+            }
+         ]
+      },
+      {
+         "colectie":"parma",
+         "tip":"bucatarie",
+         "descriere":"O deosebita imitatie de piatra, realizata în mai multe variante de culori, ia un nou sens datorită decorului floral neobișnuit de delicat si dicret.",
+         "img":[
+            "parma.jpg"
+         ],
+         "elemente":[
+            {
+               "id":"par-w",
+               "categorie":"faianta",
+               "culoare":"alb",
+               "img":null,
+               "dimensiuni":"10x10"
+            },
+            {
+               "id":"par-b",
+               "categorie":"faianta",
+               "culoare":"bej",
+               "img":null,
+               "dimensiuni":"10x10"
+            },
+            {
+               "id":"par-br",
+               "categorie":"faianta",
+               "culoare":"maro",
+               "img":null,
+               "dimensiuni":"10x10"
+            }
+         ]
+      },
+      {
+         "colectie":"selena",
+         "tip":"interior-exterior",
+         "descriere":"Simplu dar de bun gust!",
+         "img":[
+            "selena1.jpg",
+            "selena2.jpg"
+         ],
+         "elemente":[
+            {
+               "id":"sl-b",
+               "categorie":"gresie",
+               "culoare":"bej",
+               "img":null,
+               "dimensiuni":"60x60"
+            },
+            {
+               "id":"sl-a",
+               "categorie":"gresie",
+               "culoare":"alb",
+               "img":null,
+               "dimensiuni":"60x60"
+            }
+         ]
+      },
+      {
+         "colectie":"sinegal",
+         "tip":"interior-exterior",
+         "descriere":"Gresia de tip parchet este alegerea perfecta pentru a reda efectul lemnului.",
+         "img":[
+            "sinegal1.jpg",
+            "sinegal2.jpg"
+         ],
+         "elemente":[
+            {
+               "id":"sn-y",
+               "categorie":"gresie",
+               "culoare":"maro",  
+               "img":null,
+               "dimensiuni":"15x60"
+            },
+            {
+               "id":"sn-y2",
+               "categorie":"gresie",
+               "culoare":"maro",
+               "img":null,
+               "dimensiuni":"19.7x120"
+            },
+            {
+               "id":"sn-y3",
+               "categorie":"gresie",
+               "culoare":"maro",
+               "img":null,
+               "dimensiuni":"20x60"
+            },
+            {
+               "id":"sn-b1",
+               "categorie":"gresie",
+               "culoare":"bej",
+               "img":null,
+               "dimensiuni":"15x60"
+            },
+            {
+               "id":"sn-b2",
+               "categorie":"gresie",
+               "culoare":"bej",
+               "img":null,
+               "dimensiuni":"19.7x120"
+            },
+            {
+               "id":"sn-b3",
+               "categorie":"gresie",
+               "culoare":"bej",
+               "img":null,
+               "dimensiuni":"20x60"
+            },
+            {
+               "id":"sn-g",
+               "categorie":"gresie",
+               "culoare":"gri",
+               "img":null,
+               "dimensiuni":"15x60"
+            },
+            {
+               "id":"sn-g",
+               "categorie":"gresie",
+               "culoare":"gri",
+               "img":null,
+               "dimensiuni":"19.7x120"
+            },
+            {
+               "id":"sn-g",
+               "categorie":"gresie",
+               "culoare":"gri",
+               "img":null,
+               "dimensiuni":"20x60"
             }
          ]
       },
