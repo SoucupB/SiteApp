@@ -28,11 +28,17 @@ function createCategories() {
         data: {},
         success: function( data ) {
             let container = document.getElementById("cateories");
-            console.log();
             for(var i = 0; i < data['tips'].length; i++) {
+                console.log(data['tips'][i][0]);
+                if(i === data['tips'].length - 1) {
+                    fullRequest("&tip=" + data['tips'][i][0], (i + 1), 1);
+                }
+                else {
+                    fullRequest("&tip=" + data['tips'][i][0], (i + 1), 0);
+                }
                 var categ = '<li><a class="btn btn-dark btn-radius btn-brd" data-toggle="tooltip" ' +
                             ' data-placement="top" title="' + data['tips'][i][1].toString() +
-                            '" onclick="return onClickFilter(' + i.toString() + ')" data-filter=".cat' + (i + 1).toString() + '">' + data['tips'][i][0] + '</a></li>';
+                            '" data-filter=".cat' + (i + 1).toString() + '">' + data['tips'][i][0] + '</a></li>';
                 container.appendChild(createElementFromHTML(categ));
             }
         },
@@ -51,6 +57,7 @@ function fullRequest(requestString, totalClasses, withInit) {
             for(var i = 0; i < data.length; i++) {
                 if(data[i]['img'] != null) {
                     var element = createHtmlImage(i, data[i]['colectie'], data[i]['descriere'], "../date_impexcera/" + data[i]['img'][0], totalClasses);
+                    console.log(element);
                     container.appendChild(element);
                 }
             }
@@ -351,17 +358,9 @@ function queryTransform() {
 }
 
 function customs() {
-    /******************************************
-    Version: 1.0
-/****************************************** */
 
     (function($) {
         "use strict";
-
-    /* ==============================================
-        Fixed menu
-        =============================================== */
-
         $(window).on('scroll', function () {
             if ($(window).scrollTop() > 50) {
                 $('.header_style_01').addClass('fixed-menu');
@@ -542,7 +541,6 @@ function importJsonData() {
             for(var i = 0; i < colectii.length; i++) {
                 if(colectii[i]['img'] != null) {
                     let element = createHtmlImage(i, colectii[i]['colectie'], colectii[i]['descriere'], "../date_impexcera/" + colectii[i]['img'][0]);
-                    //console.log(container.appendChild(element));
                 }
             }
             customs();
@@ -561,10 +559,8 @@ async function createHeadersPortfolio() {
     let container = document.getElementById("da-thumbs")
     for(var i = 0; i < colectii.length; i++) {
         let element = createHtmlImage(i, colectii[i]['colectie'], colectii[i]['descriere']);
-        //console.log(container.appendChild(element));
     }
     doneConstructingImages = true;
 }
 createCategories();
-fullRequest("", totalClasses, 0);
-fullRequest("&tip=interior-exterior", 2, 1);
+//fullRequest("", totalClasses + 3, 1);
