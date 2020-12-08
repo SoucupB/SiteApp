@@ -15,12 +15,6 @@ function createHtmlImage(id, colectie, descriere, image, classes) {
     return createElementFromHTML(stre);
 }
 
-function onClickFilter(data) {
-    console.log(data);
-    //fullRequest("&tip=interior-exterior", 2);
-    return false;
-}
-
 function createCategories() {
     $.ajax({
         type: "GET",
@@ -46,17 +40,16 @@ function createCategories() {
     });
 }
 
-function fullRequest(requestString, totalClasses, withInit) {
+function fullRequest(requestString, classIndex, withInit) {
     $.ajax({
         type: "GET",
         url: 'http://localhost:3000/portfolio_all?page=1&per_page=13' + requestString,
         data: {},
         success: function( data ) {
             let container = document.getElementById("da-thumbs")
-            console.log(data);
             for(var i = 0; i < data.length; i++) {
                 if(data[i]['img'] != null) {
-                    var element = createHtmlImage(i, data[i]['colectie'], data[i]['descriere'], "../date_impexcera/" + data[i]['img'][0], totalClasses);
+                    var element = createHtmlImage(totalClasses++, data[i]['colectie'], data[i]['descriere'], "../date_impexcera/" + data[i]['img'][0], classIndex);
                     console.log(element);
                     container.appendChild(element);
                 }
@@ -532,25 +525,25 @@ function customs() {
     })(jQuery);
 }
 
-function importJsonData() {
-    console.log("STarted!");
-    $(document).ready(function(){
-        $.getJSON("../date_impexcera/dateDB.json", function(data){
-            colectii = data.colectii;
-            let container = document.getElementById("da-thumbs")
-            for(var i = 0; i < colectii.length; i++) {
-                if(colectii[i]['img'] != null) {
-                    let element = createHtmlImage(i, colectii[i]['colectie'], colectii[i]['descriere'], "../date_impexcera/" + colectii[i]['img'][0]);
-                }
-            }
-            customs();
-            queryTransform();
-            hoveriing();
-        }).fail(function(){
-            console.log("An error has occurred.");
-        });
-    });
-}
+// function importJsonData() {
+//     console.log("STarted!");
+//     $(document).ready(function(){
+//         $.getJSON("../date_impexcera/dateDB.json", function(data){
+//             colectii = data.colectii;
+//             let container = document.getElementById("da-thumbs")
+//             for(var i = 0; i < colectii.length; i++) {
+//                 if(colectii[i]['img'] != null) {
+//                     let element = createHtmlImage(i, colectii[i]['colectie'], colectii[i]['descriere'], "../date_impexcera/" + colectii[i]['img'][0]);
+//                 }
+//             }
+//             customs();
+//             queryTransform();
+//             hoveriing();
+//         }).fail(function(){
+//             console.log("An error has occurred.");
+//         });
+//     });
+// }
 
 async function createHeadersPortfolio() {
     while(colectii === null) {
