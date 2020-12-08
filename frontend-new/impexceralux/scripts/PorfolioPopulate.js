@@ -1,7 +1,9 @@
 var colectii = null;
 var doneConstructingImages = false;
-function createHtmlImage(id, colectie, descriere, image) {
-    let stre = '<div id=' + '"id_'+ id.toString() + '"' + ' + class="post-media pitem item-w1 item-h1 cat1">' +
+var totalClasses = 1;
+
+function createHtmlImage(id, colectie, descriere, image, classes) {
+    let stre = '<div id=' + '"id_'+ id.toString() + '"' + ' + class="post-media pitem item-w1 item-h1 cat' + classes.toString() + '">' +
                '    <a href="uploads/portfolio_07.jpg" data-rel="prettyPhoto[gal]">' +
                '        <img src="' + image + '" alt="" class="img-responsive">' +
                '        <div>' +
@@ -13,35 +15,50 @@ function createHtmlImage(id, colectie, descriere, image) {
     return createElementFromHTML(stre);
 }
 
-function simpleRequest() {
+function onClickFilter(data) {
+    console.log(data);
+    //fullRequest("&tip=interior-exterior", 2);
+    return false;
+}
+
+function createCategories() {
     $.ajax({
         type: "GET",
-        url: 'http://localhost:3000/portfolio?id=5',
+        url: 'http://localhost:3000/tips',
         data: {},
         success: function( data ) {
-            console.log(data);
+            let container = document.getElementById("cateories");
+            console.log();
+            for(var i = 0; i < data['tips'].length; i++) {
+                var categ = '<li><a class="btn btn-dark btn-radius btn-brd" data-toggle="tooltip" ' +
+                            ' data-placement="top" title="' + data['tips'][i][1].toString() +
+                            '" onclick="return onClickFilter(' + i.toString() + ')" data-filter=".cat' + (i + 1).toString() + '">' + data['tips'][i][0] + '</a></li>';
+                container.appendChild(createElementFromHTML(categ));
+            }
         },
         dataType: 'json'
     });
 }
 
-function fullRequest() {
+function fullRequest(requestString, totalClasses, withInit) {
     $.ajax({
         type: "GET",
-        url: 'http://localhost:3000/portfolio_all?page=1&per_page=13',
+        url: 'http://localhost:3000/portfolio_all?page=1&per_page=13' + requestString,
         data: {},
         success: function( data ) {
             let container = document.getElementById("da-thumbs")
             console.log(data);
             for(var i = 0; i < data.length; i++) {
                 if(data[i]['img'] != null) {
-                    var element = createHtmlImage(i, data[i]['colectie'], data[i]['descriere'], "../date_impexcera/" + data[i]['img'][0]);
+                    var element = createHtmlImage(i, data[i]['colectie'], data[i]['descriere'], "../date_impexcera/" + data[i]['img'][0], totalClasses);
                     container.appendChild(element);
                 }
             }
-            customs();
-            queryTransform();
-            hoveriing();
+            if(withInit) {
+                customs();
+                queryTransform();
+                hoveriing();
+            }
         },
         dataType: 'json'
     });
@@ -303,6 +320,7 @@ function queryTransform() {
             }
             $('nav.portfolio-filter ul a').on('click', function() {
                 var selector = $(this).attr('data-filter');
+                console.log(selector);
                 $container.isotope({ filter: selector }, refreshWaypoints());
                 $('nav.portfolio-filter ul a').removeClass('active');
                 $(this).addClass('active');
@@ -547,13 +565,6 @@ async function createHeadersPortfolio() {
     }
     doneConstructingImages = true;
 }
-
-// let container = document.getElementById("da-thumbs")
-// for(var i = 0; i < 5; i++) {
-//     var element = createHtmlImage(i, "mue", 'dada');
-//     container.appendChild(element);
-// }
-
-//importJsonData();
-fullRequest();
-//createHeadersPortfolio();
+createCategories();
+fullRequest("", totalClasses, 0);
+fullRequest("&tip=interior-exterior", 2, 1);

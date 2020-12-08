@@ -67,6 +67,10 @@ app.get('/image', function(req, res){
 });
 
 app.get('/colectii', function(req, res){
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+  res.setHeader('Access-Control-Allow-Credentials', true);
   var colectionDict = {};
   var colections = [];
   console.log(remains['colectii'].length);
@@ -84,6 +88,32 @@ app.get('/colectii', function(req, res){
     colections.push([key, colectionDict[key]]);
   }
   res.json({"colectii": colections})
+});
+
+app.get('/tips', function(req, res){
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+  res.setHeader('Access-Control-Allow-Credentials', true);
+  var colectionDict = {};
+  var colections = [];
+  for(var i = 0; i < remains['colectii'].length; i++) {
+    if(remains['colectii']) {
+      var response = remains['colectii'][i]['tip'].replace(/\s/g, '');
+      console.log(response);
+      if(!colectionDict[response]) {
+        colectionDict[response] = 1;
+      }
+      else {
+        colectionDict[response]++;
+      }
+    }
+  }
+  console.log(colectionDict);
+  for (var key in colectionDict) {
+    colections.push([key, colectionDict[key]]);
+  }
+  res.json({"tips": colections})
 });
 
 app.listen(3000);

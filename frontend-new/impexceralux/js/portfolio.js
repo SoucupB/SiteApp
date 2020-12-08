@@ -1,27 +1,21 @@
 
 
 function runPortfolio() {
-	// console.log("DADADADA");
-	// while(doneConstructingImages === false) {
-	// 	console.log(doneConstructingImages);
-    //     await sleep(100);
-	// }
-	// console.log("DADADADA");
 	(function ($) {
 	var $container = $('.portfolio'),
 		colWidth = function () {
-			var w = $container.width(), 
+			var w = $container.width(),
 				columnNum = 1,
 				columnWidth = 50;
 			if (w > 1200) {
 				columnNum  = 5;
-			} 
+			}
 			else if (w > 900) {
 				columnNum  = 3;
-			} 
+			}
 			else if (w > 600) {
 				columnNum  = 2;
-			} 
+			}
 			else if (w > 300) {
 				columnNum  = 1;
 			}
@@ -41,7 +35,7 @@ function runPortfolio() {
 		}
 		function refreshWaypoints() {
 			setTimeout(function() {
-			}, 3000);   
+			}, 3000);
 		}
 		$('nav.portfolio-filter ul a').on('click', function() {
 			var selector = $(this).attr('data-filter');
@@ -50,7 +44,7 @@ function runPortfolio() {
 			$(this).addClass('active');
 			return false;
 		});
-		function setPortfolio() { 
+		function setPortfolio() {
 			setColumns();
 			$container.isotope('reLayout');
 		}
