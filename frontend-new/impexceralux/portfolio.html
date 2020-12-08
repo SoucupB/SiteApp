@@ -3,13 +3,13 @@
 
     <!-- Basic -->
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">   
-   
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
     <!-- Mobile Metas -->
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
- 
+
      <!-- Site Metas -->
-    <title>GoodWEB Solutions - Responsive HTML5 Landing Page Template</title>  
+    <title>GoodWEB Solutions - Responsive HTML5 Landing Page Template</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -30,10 +30,6 @@
     <!-- Modernizer for Portfolio -->
     <script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="js/modernizer.js"></script>
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
 
 </head>
 <body>
@@ -49,7 +45,7 @@
 		</div>
     </div><!-- end loader -->
     <!-- END LOADER -->
-    
+
 	<div class="top-bar">
 		<div class="container-fluid">
 			<div class="row">
@@ -96,7 +92,7 @@
                         <li><a href="index.html">Home</a></li>
                         <li><a href="about-us.html">About us</a></li>
                         <li><a href="services.html">Our Services</a></li>
-                        <li><a class="active" href="portfolio.html">Portfolio</a></li>
+                        <li><a class="active" href="portfolio.html">Colectii</a></li>
                         <li><a href="features.html">Features</a></li>
                         <li><a href="testimonials.html">Testimonials</a></li>
                         <li><a href="pricing.html">Pricing</a></li>
@@ -135,123 +131,23 @@
             <div class="row">
                 <div class="col-md-12">
                     <nav class="portfolio-filter text-center">
-                        <ul>
+                        <ul id = 'cateories'>
                             <li><a class="btn btn-dark btn-radius btn-brd active" href="#" data-filter="*"><span class="oi hidden-xs" data-glyph="grid-three-up"></span> All</a></li>
-                            <li><a class="btn btn-dark btn-radius btn-brd" data-toggle="tooltip" data-placement="top" title="5" href="#" data-filter=".cat1">Design</a></li>
+                            <!-- <li><a class="btn btn-dark btn-radius btn-brd" data-toggle="tooltip" data-placement="top" title="5" href="#" data-filter=".cat1">Design</a></li>
                             <li><a class="btn btn-dark btn-radius btn-brd" href="#" data-toggle="tooltip" data-placement="top" title="12" data-filter=".cat2">Mockup</a></li>
                             <li><a class="btn btn-dark btn-radius btn-brd" href="#" data-toggle="tooltip" data-placement="top" title="21" data-filter=".cat3">Logos</a></li>
-                            <li><a class="btn btn-dark btn-radius btn-brd" href="#" data-toggle="tooltip" data-placement="top" title="11" data-filter=".cat4">HTML</a></li>
+                            <li><a class="btn btn-dark btn-radius btn-brd" href="#" data-toggle="tooltip" data-placement="top" title="11" data-filter=".cat4">HTML</a></li> -->
                         </ul>
                     </nav>
                 </div>
             </div>
 
             <hr class="invis">
-            <!-- <script type="module" >
-                $(document).ready(function(){
-                    $.getJSON("../date_impexcera/dateDB.json", function(data){
-                        console.log(data.colectii[0]); // Prints: Harry // Prints: 14
-                    }).fail(function(){
-                        console.log("An error has occurred.");
-                    });
-                });
-            </script> -->
             <div id="da-thumbs" class="da-thumbs portfolio">
-                <div class="post-media pitem item-w1 item-h1 cat1">
-                    <a href="uploads/portfolio_01.jpg" data-rel="prettyPhoto[gal]">
-                        <img src="uploads/portfolio_01.jpg" alt="" class="img-responsive">
-                        <div>
-                            <h3>Seahorse by Trevor <small>Web Design</small></h3>
-                            <i class="flaticon-unlink"></i>
-                        </div>
-                    </a>
-                </div>
-                <div class="post-media pitem item-w1 item-h1 cat2">
-                    <a href="uploads/portfolio_02.jpg" data-rel="prettyPhoto[gal]">
-                        <img src="uploads/portfolio_02.jpg" alt="" class="img-responsive">
-                        <div>
-                            <h3>Tradested Mockop <small>Graphic Design</small></h3>
-                            <i class="flaticon-unlink"></i>
-                        </div>
-                    </a>
-                </div>
-                <div class="post-media pitem item-w1 item-h1 cat1">
-                    <a href="uploads/portfolio_03.jpg" data-rel="prettyPhoto[gal]">
-                        <img src="uploads/portfolio_03.jpg" alt="" class="img-responsive">
-                        <div>
-                            <h3>Photography Material <small>Photography</small></h3>
-                            <i class="flaticon-unlink"></i>
-                        </div>
-                    </a>
-                </div>
-                <div class="post-media pitem item-w1 item-h1 cat4">
-                    <a href="uploads/portfolio_04.jpg" data-rel="prettyPhoto[gal]">
-                        <img src="uploads/portfolio_04.jpg" alt="" class="img-responsive">
-                        <div>
-                            <h3>Responsive Menu <small>UI Design</small></h3>
-                            <i class="flaticon-unlink"></i>
-                        </div>
-                    </a>
-                </div>
-                <div class="post-media pitem item-w1 item-h1 cat3">
-                    <a href="uploads/portfolio_05.jpg" data-rel="prettyPhoto[gal]">
-                        <img src="uploads/portfolio_05.jpg" alt="" class="img-responsive">
-                        <div>
-                            <h3>SnowMaker App <small>Application</small></h3>
-                            <i class="flaticon-unlink"></i>
-                        </div>
-                    </a>
-                </div>
-                <div class="post-media pitem item-w1 item-h1 cat2">
-                    <a href="uploads/portfolio_06.jpg" data-rel="prettyPhoto[gal]">
-                        <img src="uploads/portfolio_06.jpg" alt="" class="img-responsive">
-                        <div>
-                            <h3>3D Mockups <small>MUEEEEE   </small></h3>
-                            <i class="flaticon-unlink"></i>
-                        </div>
-                    </a>
-                </div>
-                <div class="post-media pitem item-w1 item-h1 cat1">
-                    <a href="uploads/portfolio_07.jpg" data-rel="prettyPhoto[gal]">
-                        <img src="uploads/portfolio_07.jpg" alt="" class="img-responsive">
-                        <div>
-                            <h3>Best of Design <small>Web Design</small></h3>
-                            <i class="flaticon-unlink"></i>
-                        </div>
-                    </a>
-                </div>
-                <div class="post-media pitem item-w1 item-h1 cat4">
-                    <a href="uploads/portfolio_08.jpg" data-rel="prettyPhoto[gal]">
-                        <img src="uploads/portfolio_08.jpg" alt="" class="img-responsive">
-                        <div>
-                            <h3>Admin Dashboard <small>Admin Template</small></h3>
-                            <i class="flaticon-unlink"></i>
-                        </div>
-                    </a>
-                </div>
-                <div class="post-media pitem item-w1 item-h1 cat3">
-                    <a href="uploads/portfolio_09.jpg" data-rel="prettyPhoto[gal]">
-                        <img src="uploads/portfolio_09.jpg" alt="" class="img-responsive">
-                        <div>
-                            <h3>Radio Mockup <small>Graphic Design</small></h3>
-                            <i class="flaticon-unlink"></i>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="post-media pitem item-w1 item-h1 cat2">
-                    <a href="uploads/portfolio_10.jpg" data-rel="prettyPhoto[gal]">
-                        <img src="uploads/portfolio_10.jpg" alt="" class="img-responsive">
-                        <div>
-                            <h3>Danny Jeffers <small>Web Design Tutorial</small></h3>
-                            <i class="flaticon-unlink"></i>
-                        </div>
-                    </a>
-                </div>
             </div><!-- end portfolio -->
         </div><!-- end container -->
     </div><!-- end section -->
-	
+
 	<div id="services" class="parallax section lb">
         <div class="container">
             <div class="section-title text-center">
@@ -459,20 +355,20 @@
                         </ul><!-- end links -->
                     </div><!-- end clearfix -->
                 </div><!-- end col -->
-				
+
                 <div class="col-md-4 col-sm-4 col-xs-12">
                     <div class="footer-distributed widget clearfix">
                         <div class="widget-title">
                             <h3>Subscribe</h3>
 							<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which one know this tricks.</p>
                         </div>
-						
+
 						<div class="footer-right">
 							<form method="get" action="#">
 								<input placeholder="Subscribe our newsletter.." name="search">
 								<i class="fa fa-envelope-o"></i>
 							</form>
-						</div>                        
+						</div>
                     </div><!-- end clearfix -->
                 </div><!-- end col -->
             </div><!-- end row -->
@@ -482,12 +378,12 @@
     <div class="copyrights">
         <div class="container">
             <div class="footer-distributed">
-                <div class="footer-left">                   
-                    <p class="footer-company-name">All Rights Reserved. &copy; 2018 <a href="#">GoodWEB</a> Design By : 
+                <div class="footer-left">
+                    <p class="footer-company-name">All Rights Reserved. &copy; 2018 <a href="#">GoodWEB</a> Design By :
 					<a href="https://html.design/">html design</a></p>
                 </div>
 
-                
+
             </div>
         </div><!-- end container -->
     </div><!-- end copyrights -->
@@ -501,8 +397,8 @@
     <script src='scripts/PorfolioPopulate.js'></script>
     <!-- <script src="js/portfolio.js"></script>
     <script src="js/hoverdir.js"></script> -->
-    
-    
+
+
 
 </body>
 </html>
