@@ -73,7 +73,6 @@ app.get('/colectii', function(req, res){
   res.setHeader('Access-Control-Allow-Credentials', true);
   var colectionDict = {};
   var colections = [];
-  //console.log(remains['colectii'].length);
   for(var i = 0; i < remains['colectii'].length; i++) {
     if(remains['colectii'] && !colectionDict[remains['colectii'][i]['colectie']]) {
       if(colectionDict[remains['colectii'][i]['colectie']] === undefined) {
@@ -100,7 +99,6 @@ app.get('/tips', function(req, res){
   for(var i = 0; i < remains['colectii'].length; i++) {
     if(remains['colectii']) {
       var response = remains['colectii'][i]['tip'].replace(/\s/g, '');
-      //console.log(response);
       if(!colectionDict[response]) {
         colectionDict[response] = 1;
       }
@@ -109,7 +107,6 @@ app.get('/tips', function(req, res){
       }
     }
   }
- // console.log(colectionDict);
   for (var key in colectionDict) {
     colections.push([key, colectionDict[key]]);
   }
