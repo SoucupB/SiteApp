@@ -29,7 +29,7 @@ function createCategories() {
             let container = document.getElementById("cateories");
             for(var i = 0; i < data['tips'].length; i++) {
                 totalRequests++;
-                fullRequest("&tip=" + data['tips'][i][0], (i + 1));
+                fullRequest("&tip=" + data['tips'][i][0], (i + 1), 1, 8);
                 var categ = '<li><a class="btn btn-dark btn-radius btn-brd" data-toggle="tooltip" ' +
                             ' data-placement="top" title="' + data['tips'][i][1].toString() +
                             '" data-filter=".cat' + (i + 1).toString() + '">' + data['tips'][i][0] + '</a></li>';
@@ -44,10 +44,10 @@ function createCategories() {
     beginAnimation();
 }
 
-function fullRequest(requestString, classIndex) {
+function fullRequest(requestString, classIndex, page, per_page) {
     $.ajax({
         type: "GET",
-        url: 'http://localhost:3000/portfolio_all?page=1&per_page=8' + requestString,
+        url: 'http://localhost:3000/portfolio_all?page=' + page.toString() + '&per_page=' + per_page.toString() + requestString,
         data: {},
         success: function( data ) {
             let container = document.getElementById("da-thumbs")
@@ -63,7 +63,20 @@ function fullRequest(requestString, classIndex) {
     });
 }
 
+function showPageAt(catID, page, per_page) {
+
+}
+
+function highlightPag(pagination) {
+    for(var i = 0; i < paginationIndexes.length; i++) {
+        document.getElementById(paginationIndexes[i]).removeAttribute("class");
+    }
+    document.getElementById("pag_" + pagination.toString()).setAttribute("class", "active");
+}
+
 function createPaginations(cat_id) {
+    if(cat_id === '*')
+        return;
     var element = document.getElementById("pagi");
     for(var i = 0; i < paginationIndexes.length; i++) {
         document.getElementById(paginationIndexes[i]).remove();
@@ -73,26 +86,13 @@ function createPaginations(cat_id) {
     for(var i = 0; i < pagSize; i++) {
         var cId = "pag_" + i.toString();
         paginationIndexes.push(cId);
-        var htmlPagination = '<a id = ' + cId + '>' + (i + 1).toString() + '</a>';
+        var htmlPagination = '<a onClick = "highlightPag(' + i.toString() + ')" id = ' + cId + '>' + (i + 1).toString() + '</a>';
         var pag = createElementFromHTML(htmlPagination);
         element.appendChild(pag)
     }
     element.appendChild(createElementFromHTML("<a id = pag_" + pagSize.toString() + ">&raquo;</a>"))
     paginationIndexes.push("pag_" + pagSize.toString());
     console.log(pagSize);
-}
-
-function addCollection(classPoint, colName, colDesc, colPhoto) {
-    let container = document.getElementById("da-thumbs");
-    //var element = createHtmlImage(classPoint, colName, colDesc, "../date_impexcera/" + colPhoto, prankId++);
-    // container.appendChild(element);
-    // beginAnimation();
-    // for(var i = 1; i <= 44; i++) {
-    //     var element = document.getElementById("id_" + i.toString());
-    //     if(element) {
-    //        element.remove();
-    //     }
-    // }
 }
 
 function beginAnimation() {
@@ -268,17 +268,17 @@ function queryTransform() {
                         height: height
                     });
                 });
-                $container.find('.img-responsive').each(function() {
-                    var $item = $(this),
-                        multiplier_w = $item.attr('class').match(/item-w(\d)/),
-                        multiplier_h = $item.attr('class').match(/item-h(\d)/),
-                        width = multiplier_w ? columnWidth * multiplier_w[1] - 0 : columnWidth - 5,
-                        height = multiplier_h ? columnWidth * multiplier_h[1] * 1-5 : columnWidth * 0.5 - 5;
-                    $item.css({
-                        width: width,
-                        height: height
-                    });
-                });
+                // $container.find('.img-responsive').each(function() {
+                //     var $item = $(this),
+                //         multiplier_w = $item.attr('class').match(/item-w(\d)/),
+                //         multiplier_h = $item.attr('class').match(/item-h(\d)/),
+                //         width = multiplier_w ? columnWidth * multiplier_w[1] - 0 : columnWidth - 5,
+                //         height = multiplier_h ? columnWidth * multiplier_h[1] * 1-5 : columnWidth * 0.5 - 5;
+                //     $item.css({
+                //         width: width,
+                //         height: height
+                //     });
+                // });
                 return columnWidth;
             }
             function refreshWaypoints() {
