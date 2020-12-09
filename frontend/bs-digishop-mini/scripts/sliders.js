@@ -224,7 +224,6 @@ function add_objects_to_page_html(id, name, price_element, descriere, image_link
                             '</div>' +
                         '</div>' +
                     '</div>';
-    //console.log(stre);
     buttons.push(button_id);
     ids.push(current_id);
     var element = htmlToElement(stre)

@@ -1,12 +1,11 @@
 var colectii = null;
 var doneConstructingImages = false;
 var totalClasses = 1;
-var prankId = 500;
 $.ajaxSetup({async: false});
 
 function createHtmlImage(id, colectie, descriere, image, classes) {
     let stre = '<div id=' + '"id_'+ id.toString() + '"' + ' + class="post-media pitem item-w1 item-h1 cat' + classes.toString() + '">' +
-               '    <a href="uploads/portfolio_07.jpg" data-rel="prettyPhoto[gal]">' +
+               '    <a href="' + image + '" data-rel="prettyPhoto[gal]">' +
                '        <img src="' + image + '" alt="" class="img-responsive">' + //style="width:300px;height:162px;"
                '        <div>' +
                '            <h3>' + colectie + ' <small> ' + descriere + ' </small></h3>' +
@@ -26,9 +25,8 @@ function createCategories() {
         success: function( data ) {
             let container = document.getElementById("cateories");
             for(var i = 0; i < data['tips'].length; i++) {
-                console.log(data['tips'][i][0]);
                 totalRequests++;
-                fullRequest("&tip=" + data['tips'][i][0], (i + 1), 0);
+                fullRequest("&tip=" + data['tips'][i][0], (i + 1));
                 var categ = '<li><a class="btn btn-dark btn-radius btn-brd" data-toggle="tooltip" ' +
                             ' data-placement="top" title="' + data['tips'][i][1].toString() +
                             '" data-filter=".cat' + (i + 1).toString() + '">' + data['tips'][i][0] + '</a></li>';
@@ -37,25 +35,22 @@ function createCategories() {
         },
         dataType: 'json'
     });
-    console.log(totalRequests);
     beginAnimation();
 }
 
-function fullRequest(requestString, classIndex, withInit) {
+function fullRequest(requestString, classIndex) {
     $.ajax({
         type: "GET",
-        url: 'http://localhost:3000/portfolio_all?page=1&per_page=13' + requestString,
+        url: 'http://localhost:3000/portfolio_all?page=1&per_page=9' + requestString,
         data: {},
         success: function( data ) {
             let container = document.getElementById("da-thumbs")
             for(var i = 0; i < data.length; i++) {
                 if(data[i]['img'] != null) {
                     var element = createHtmlImage(totalClasses++, data[i]['colectie'], data[i]['descriere'], "../date_impexcera/" + data[i]['img'][0], classIndex);
-                    console.log(container.appendChild(element));
+                   // console.log(container.appendChild(element));
+                    container.appendChild(element)
                 }
-            }
-            if(withInit) {
-                beginAnimation();
             }
         },
         dataType: 'json'
@@ -64,15 +59,15 @@ function fullRequest(requestString, classIndex, withInit) {
 
 function addCollection(classPoint, colName, colDesc, colPhoto) {
     let container = document.getElementById("da-thumbs");
-    var element = createHtmlImage(classPoint, colName, colDesc, "../date_impexcera/" + colPhoto, prankId++);
-    container.appendChild(element);
-    beginAnimation();
-    for(var i = 1; i <= 44; i++) {
-        var element = document.getElementById("id_" + i.toString());
-        if(element) {
-           element.remove();
-        }
-    }
+    //var element = createHtmlImage(classPoint, colName, colDesc, "../date_impexcera/" + colPhoto, prankId++);
+    // container.appendChild(element);
+    // beginAnimation();
+    // for(var i = 1; i <= 44; i++) {
+    //     var element = document.getElementById("id_" + i.toString());
+    //     if(element) {
+    //        element.remove();
+    //     }
+    // }
 }
 
 function beginAnimation() {
@@ -90,7 +85,6 @@ function hoveriing() {
             this._init( options );
 
         };
-        // the options
         $.HoverDir.defaults = {
             speed : 200,
             easing : 'ease',
@@ -236,15 +230,25 @@ function queryTransform() {
                 var w = $container.width(),
                     columnNum = 1,
                     columnWidth = 50;
-                columnNum = 5;
+                columnNum = 4;
                 columnWidth = Math.floor(w / columnNum);
                 $container.find('.pitem').each(function() {
                     var $item = $(this),
                         multiplier_w = $item.attr('class').match(/item-w(\d)/),
                         multiplier_h = $item.attr('class').match(/item-h(\d)/),
-                        width = multiplier_w ? columnWidth*multiplier_w[1]-0 : columnWidth-5,
-                        height = multiplier_h ? columnWidth*multiplier_h[1]*1-5 : columnWidth*0.5-5;
-                        console.log(width, height);
+                        width = multiplier_w ? columnWidth * multiplier_w[1] - 0 : columnWidth - 5,
+                        height = multiplier_h ? columnWidth * multiplier_h[1] * 1-5 : columnWidth * 0.5 - 5;
+                    $item.css({
+                        width: width,
+                        height: height
+                    });
+                });
+                $container.find('.img-responsive').each(function() {
+                    var $item = $(this),
+                        multiplier_w = $item.attr('class').match(/item-w(\d)/),
+                        multiplier_h = $item.attr('class').match(/item-h(\d)/),
+                        width = multiplier_w ? columnWidth * multiplier_w[1] - 0 : columnWidth - 5,
+                        height = multiplier_h ? columnWidth * multiplier_h[1] * 1-5 : columnWidth * 0.5 - 5;
                     $item.css({
                         width: width,
                         height: height
