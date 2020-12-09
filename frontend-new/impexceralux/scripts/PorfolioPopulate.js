@@ -1,6 +1,9 @@
 var colectii = null;
 var doneConstructingImages = false;
 var totalClasses = 1;
+var containerMap = {};
+var paginationIndexes = {};
+var catExamples = [];
 $.ajaxSetup({async: false});
 
 function createHtmlImage(id, colectie, descriere, image, classes) {
@@ -30,31 +33,53 @@ function createCategories() {
                 var categ = '<li><a class="btn btn-dark btn-radius btn-brd" data-toggle="tooltip" ' +
                             ' data-placement="top" title="' + data['tips'][i][1].toString() +
                             '" data-filter=".cat' + (i + 1).toString() + '">' + data['tips'][i][0] + '</a></li>';
+                paginationIndexes[".cat" + (i + 1).toString()] = data['tips'][i][0];
                 container.appendChild(createElementFromHTML(categ));
             }
         },
         dataType: 'json'
     });
+    console.log(containerMap);
+    $.ajaxSetup({async: true});
     beginAnimation();
 }
 
 function fullRequest(requestString, classIndex) {
     $.ajax({
         type: "GET",
-        url: 'http://localhost:3000/portfolio_all?page=1&per_page=9' + requestString,
+        url: 'http://localhost:3000/portfolio_all?page=1&per_page=8' + requestString,
         data: {},
         success: function( data ) {
             let container = document.getElementById("da-thumbs")
-            for(var i = 0; i < data.length; i++) {
-                if(data[i]['img'] != null) {
-                    var element = createHtmlImage(totalClasses++, data[i]['colectie'], data[i]['descriere'], "../date_impexcera/" + data[i]['img'][0], classIndex);
-                   // console.log(container.appendChild(element));
+            for(var i = 0; i < data['data'].length; i++) {
+                if(data['data'][i]['img'] != null) {
+                    var element = createHtmlImage(totalClasses++, data['data'][i]['colectie'], data['data'][i]['descriere'], "../date_impexcera/" + data['data'][i]['img'][0], classIndex);
                     container.appendChild(element)
                 }
             }
+            containerMap[".cat" + classIndex.toString() + ""] = data['pages'];
         },
         dataType: 'json'
     });
+}
+
+function createPaginations(cat_id) {
+    var element = document.getElementById("pagi");
+    for(var i = 0; i < paginationIndexes.length; i++) {
+        document.getElementById(paginationIndexes[i]).remove();
+    }
+    paginationIndexes = [];
+    var pagSize = containerMap[cat_id];
+    for(var i = 0; i < pagSize; i++) {
+        var cId = "pag_" + i.toString();
+        paginationIndexes.push(cId);
+        var htmlPagination = '<a id = ' + cId + '>' + (i + 1).toString() + '</a>';
+        var pag = createElementFromHTML(htmlPagination);
+        element.appendChild(pag)
+    }
+    element.appendChild(createElementFromHTML("<a id = pag_" + pagSize.toString() + ">&raquo;</a>"))
+    paginationIndexes.push("pag_" + pagSize.toString());
+    console.log(pagSize);
 }
 
 function addCollection(classPoint, colName, colDesc, colPhoto) {
@@ -262,7 +287,8 @@ function queryTransform() {
             }
             $('nav.portfolio-filter ul a').on('click', function() {
                 var selector = $(this).attr('data-filter');
-                //console.log(selector);
+                console.log(selector);
+                createPaginations(selector.toString());
                 $container.isotope({ filter: selector }, refreshWaypoints());
                 $('nav.portfolio-filter ul a').removeClass('active');
                 $(this).addClass('active');

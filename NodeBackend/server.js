@@ -46,7 +46,8 @@ app.get('/portfolio_all', function(req, res){
     res.json([]);
   }
   var right = Math.min(data.length, per_page * page);
-  res.json(data.slice(left, right));
+  var pagesNumber = Math.floor(data.length / per_page) + (data.length % per_page !== 0);
+  res.json({"data": data.slice(left, right), "pages": pagesNumber});
 });
 
 app.get('/image', function(req, res){
