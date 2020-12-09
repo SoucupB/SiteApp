@@ -1,11 +1,13 @@
 var colectii = null;
 var doneConstructingImages = false;
 var totalClasses = 1;
+var prankId = 500;
+$.ajaxSetup({async: false});
 
 function createHtmlImage(id, colectie, descriere, image, classes) {
     let stre = '<div id=' + '"id_'+ id.toString() + '"' + ' + class="post-media pitem item-w1 item-h1 cat' + classes.toString() + '">' +
                '    <a href="uploads/portfolio_07.jpg" data-rel="prettyPhoto[gal]">' +
-               '        <img src="' + image + '" alt="" class="img-responsive">' +
+               '        <img src="' + image + '" alt="" class="img-responsive">' + //style="width:300px;height:162px;"
                '        <div>' +
                '            <h3>' + colectie + ' <small> ' + descriere + ' </small></h3>' +
                '            <i class="flaticon-unlink"></i>' +
@@ -16,6 +18,7 @@ function createHtmlImage(id, colectie, descriere, image, classes) {
 }
 
 function createCategories() {
+    var totalRequests = 0;
     $.ajax({
         type: "GET",
         url: 'http://localhost:3000/tips',
@@ -24,12 +27,8 @@ function createCategories() {
             let container = document.getElementById("cateories");
             for(var i = 0; i < data['tips'].length; i++) {
                 console.log(data['tips'][i][0]);
-                if(i === data['tips'].length - 1) {
-                    fullRequest("&tip=" + data['tips'][i][0], (i + 1), 1);
-                }
-                else {
-                    fullRequest("&tip=" + data['tips'][i][0], (i + 1), 0);
-                }
+                totalRequests++;
+                fullRequest("&tip=" + data['tips'][i][0], (i + 1), 0);
                 var categ = '<li><a class="btn btn-dark btn-radius btn-brd" data-toggle="tooltip" ' +
                             ' data-placement="top" title="' + data['tips'][i][1].toString() +
                             '" data-filter=".cat' + (i + 1).toString() + '">' + data['tips'][i][0] + '</a></li>';
@@ -38,6 +37,8 @@ function createCategories() {
         },
         dataType: 'json'
     });
+    console.log(totalRequests);
+    beginAnimation();
 }
 
 function fullRequest(requestString, classIndex, withInit) {
@@ -50,41 +51,53 @@ function fullRequest(requestString, classIndex, withInit) {
             for(var i = 0; i < data.length; i++) {
                 if(data[i]['img'] != null) {
                     var element = createHtmlImage(totalClasses++, data[i]['colectie'], data[i]['descriere'], "../date_impexcera/" + data[i]['img'][0], classIndex);
-                    container.appendChild(element);
+                    console.log(container.appendChild(element));
                 }
             }
             if(withInit) {
-                customs();
-                queryTransform();
-                hoveriing();
+                beginAnimation();
             }
         },
         dataType: 'json'
     });
 }
 
+function addCollection(classPoint, colName, colDesc, colPhoto) {
+    let container = document.getElementById("da-thumbs");
+    var element = createHtmlImage(classPoint, colName, colDesc, "../date_impexcera/" + colPhoto, prankId++);
+    container.appendChild(element);
+    beginAnimation();
+    for(var i = 1; i <= 44; i++) {
+        var element = document.getElementById("id_" + i.toString());
+        if(element) {
+           element.remove();
+        }
+    }
+}
+
+function beginAnimation() {
+    customs();
+    queryTransform();
+    hoveriing();
+}
+
 function hoveriing() {
     ;( function( $, window, undefined ) {
-
         'use strict';
-
         $.HoverDir = function( options, element ) {
 
             this.$el = $( element );
             this._init( options );
 
         };
-
         // the options
         $.HoverDir.defaults = {
-            speed : 300,
+            speed : 200,
             easing : 'ease',
             hoverDelay : 0,
             inverse : false
         };
-
         $.HoverDir.prototype = {
-
             _init : function( options ) {
                 this.options = $.extend( true, {}, $.HoverDir.defaults, options );
                 this.transitionProp = 'all ' + this.options.speed + 'ms ' + this.options.easing;
@@ -192,42 +205,25 @@ function hoveriing() {
                         return;
                     }
                     if ( !$.isFunction( instance[options] ) || options.charAt(0) === "_" ) {
-
                         logError( "no such method '" + options + "' for hoverdir instance" );
                         return;
-
                     }
-
                     instance[ options ].apply( instance, args );
-
                 });
-
             }
             else {
-
                 this.each(function() {
-
                     if ( instance ) {
-
                         instance._init();
-
                     }
                     else {
-
                         instance = $.data( this, 'hoverdir', new $.HoverDir( options, this ) );
-
                     }
-
                 });
-
             }
-
             return instance;
-
         };
-
     } )( jQuery, window );
-
             $(function() {
                 $('.pitem ').each( function() { $(this).hoverdir(); } );
             });
@@ -240,25 +236,15 @@ function queryTransform() {
                 var w = $container.width(),
                     columnNum = 1,
                     columnWidth = 50;
-                if (w > 1200) {
-                    columnNum  = 5;
-                }
-                else if (w > 900) {
-                    columnNum  = 3;
-                }
-                else if (w > 600) {
-                    columnNum  = 2;
-                }
-                else if (w > 300) {
-                    columnNum  = 1;
-                }
-                columnWidth = Math.floor(w/columnNum);
+                columnNum = 5;
+                columnWidth = Math.floor(w / columnNum);
                 $container.find('.pitem').each(function() {
                     var $item = $(this),
                         multiplier_w = $item.attr('class').match(/item-w(\d)/),
                         multiplier_h = $item.attr('class').match(/item-h(\d)/),
                         width = multiplier_w ? columnWidth*multiplier_w[1]-0 : columnWidth-5,
                         height = multiplier_h ? columnWidth*multiplier_h[1]*1-5 : columnWidth*0.5-5;
+                        console.log(width, height);
                     $item.css({
                         width: width,
                         height: height
@@ -272,14 +258,13 @@ function queryTransform() {
             }
             $('nav.portfolio-filter ul a').on('click', function() {
                 var selector = $(this).attr('data-filter');
-                console.log(selector);
+                //console.log(selector);
                 $container.isotope({ filter: selector }, refreshWaypoints());
                 $('nav.portfolio-filter ul a').removeClass('active');
                 $(this).addClass('active');
                 return false;
             });
             function setPortfolio() {
-                setColumns();
                 $container.isotope('reLayout');
             }
             $container.imagesLoaded( function() {
@@ -303,7 +288,6 @@ function queryTransform() {
 }
 
 function customs() {
-
     (function($) {
         "use strict";
         $(window).on('scroll', function () {
@@ -335,18 +319,10 @@ function customs() {
             });
         }
 
-        /* ==============================================
-        LOADER -->
-            =============================================== */
-
         $(window).load(function() {
             $("#preloader").on(500).fadeOut();
             $(".preloader").on(600).fadeOut("slow");
         });
-
-        /* ==============================================
-        FUN FACTS -->
-        =============================================== */
 
         function count($this) {
             var current = parseInt($this.html(), 10);
@@ -471,26 +447,6 @@ function customs() {
     })(jQuery);
 }
 
-// function importJsonData() {
-//     console.log("STarted!");
-//     $(document).ready(function(){
-//         $.getJSON("../date_impexcera/dateDB.json", function(data){
-//             colectii = data.colectii;
-//             let container = document.getElementById("da-thumbs")
-//             for(var i = 0; i < colectii.length; i++) {
-//                 if(colectii[i]['img'] != null) {
-//                     let element = createHtmlImage(i, colectii[i]['colectie'], colectii[i]['descriere'], "../date_impexcera/" + colectii[i]['img'][0]);
-//                 }
-//             }
-//             customs();
-//             queryTransform();
-//             hoveriing();
-//         }).fail(function(){
-//             console.log("An error has occurred.");
-//         });
-//     });
-// }
-
 async function createHeadersPortfolio() {
     while(colectii === null) {
         await sleep(100);
@@ -502,4 +458,3 @@ async function createHeadersPortfolio() {
     doneConstructingImages = true;
 }
 createCategories();
-//fullRequest("", totalClasses + 3, 1);
