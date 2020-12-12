@@ -40,8 +40,7 @@ function createCategories() {
             for(var i = 0; i < data['tips'].length; i++) {
                 collectionTabData[i + 1] = [];
                 for(var j = 0; j < per_page; j++) {
-                    var element = createHtmlImage(j + i * per_page, "alarak", "alarak", "../date_impexcera/adarve_prez.jpg", i + 1);
-                   // console.log(containerDiv.appendChild(element));
+                    var element = createHtmlImage(j + i * per_page, "", "", "", i + 1);
                     containerDiv.appendChild(element)
                     var pageSize = Math.floor(data['tips'][i][1] / per_page) + (data['tips'][i][1] % per_page !== 0);
                     containerMap[".cat" + (i + 1).toString() + ""] = pageSize;
@@ -104,26 +103,6 @@ function fillWithCollectionItems(collectionTypesData, idsOffset, page) {
                     replaceRecordData(idsOffset * per_page + realIndex++, data['data'][i]['colectie'], data['data'][i]['descriere'], "../date_impexcera/" + data['data'][i]['img'][0]);
                 }
             }
-        },
-        dataType: 'json'
-    });
-}
-
-function fullRequest(requestString, classIndex, page, per_page) {
-    $.ajax({
-        type: "GET",
-        url: 'http://localhost:3000/portfolio_all?page=' + page.toString() + '&per_page=' + per_page.toString() + requestString,
-        data: {},
-        success: function( data ) {
-            let container = document.getElementById("da-thumbs");
-            for(var i = 0; i < data['data'].length; i++) {
-                if(data['data'][i]['img'] != null) {
-                    collectionTabData[classIndex].push(totalClasses);
-                    var element = createHtmlImage(totalClasses++, data['data'][i]['colectie'], data['data'][i]['descriere'], "../date_impexcera/" + data['data'][i]['img'][0], classIndex);
-                    container.appendChild(element)
-                }
-            }
-            containerMap[".cat" + classIndex.toString() + ""] = data['pages'];
         },
         dataType: 'json'
     });
