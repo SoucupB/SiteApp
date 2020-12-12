@@ -1,11 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <!-- Basic -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <!-- Mobile Metas -->
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
     <!-- Site Metas -->
@@ -13,27 +11,23 @@
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
+    <script src="js/portfolio.js"></script>
 
     <!-- Site Icons -->
     <link rel="shortcut icon" href="images/favicon_impexcera.ico" type="image/x-icon" />
-    <link rel="apple-touch-icon" href="images/logos/favicon_impexcera.png"> 
+    <link rel="apple-touch-icon" href="images/logos/favicon_impexcera.png">
 
-    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <!-- Site CSS -->
     <link rel="stylesheet" href="style.css">
-    <!-- Responsive CSS -->
     <link rel="stylesheet" href="css/responsive.css">
-    <!-- Custom CSS -->
     <link rel="stylesheet" href="css/custom.css">
 
-    <!-- Modernizer for Portfolio -->
     <script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="js/modernizer.js"></script>
 
 </head>
 <body>
-    
+
 	<div class="top-bar">
 		<div class="container-fluid">
 			<div class="row">
@@ -88,8 +82,8 @@
             </div>
         </nav>
     </header>
-	
-        
+
+
    	<!--div class="banner-area banner-bg-1">
 		<div class="container">
 			<div class="row">
@@ -106,8 +100,7 @@
 		</div>
 	</div-->
 
-    <!-- div-u asta e al nostru -->
-    <div id="portfolio" class="section wb"> <!-- section wb : lasa un breton alb de toata pula, trebuie modificat css-u -->
+    <div id="portfolio" class="section wb">
         <div class="container">
             <div class="section-title text-center">
                 <h3>Colectii</h3>
@@ -119,7 +112,7 @@
                 <div class="col-md-12">
                     <nav class="portfolio-filter text-center">
                         <ul id = 'cateories'>
-                            <li><a class="btn btn-dark btn-radius btn-brd active" href="#" data-filter="*"><span class="oi hidden-xs" data-glyph="grid-three-up"></span> All</a></li>
+                            <!-- <li><a class="btn btn-dark btn-radius btn-brd active" href="#" data-filter=".cat1000"><span class="oi hidden-xs" data-glyph="grid-three-up"></span> All</a></li> -->
                             <!-- <li><a class="btn btn-dark btn-radius btn-brd" data-toggle="tooltip" data-placement="top" title="5" href="#" data-filter=".cat1">Design</a></li>
                             <li><a class="btn btn-dark btn-radius btn-brd" href="#" data-toggle="tooltip" data-placement="top" title="12" data-filter=".cat2">Mockup</a></li>
                             <li><a class="btn btn-dark btn-radius btn-brd" href="#" data-toggle="tooltip" data-placement="top" title="21" data-filter=".cat3">Logos</a></li>
@@ -128,14 +121,25 @@
                     </nav>
                 </div>
             </div>
-            
+            <div id = 'pagi' class="pagination">
+                <a href="#">&laquo;</a>
+                <!-- <a href="#">&laquo;</a>
+                <a href="#">1</a>
+                <a href="#" class="active">2</a>
+                <a href="#">3</a>
+                <a href="#">4</a>
+                <a href="#">5</a>
+                <a href="#">6</a> -->
+                <!-- <a href="#">&raquo;</a> -->
+            </div>
+
             <hr class="invis">
             <div id="da-thumbs" class="da-thumbs portfolio">
             </div><!-- end portfolio -->
         </div><!-- end container -->
     </div><!-- end section -->
     <!-- pana acii-->
-        
+
     <div class="copyrights">
         <div class="container">
             <div class="footer-distributed">
@@ -143,20 +147,13 @@
                     <p class="footer-company-name">Toate drepturile rezervate. &copy; 2020 <a href="#">Impexcera Lux</a></p>
                 </div>
             </div>
-        </div><!-- end container -->
-    </div><!-- end copyrights -->
+        </div>
+    </div>
 
     <a href="#" id="scroll-to-top" class="dmtop global-radius"><i class="fa fa-angle-up"></i></a>
-    <!-- ALL JS FILES -->
     <script src="js/all.js"></script>
-    <!-- ALL PLUGINS -->
-    <!-- <script src="js/custom.js"></script> -->
     <script src='scripts/Utils.js'></script>
     <script src='scripts/PorfolioPopulate.js'></script>
-    <!-- <script src="js/portfolio.js"></script>
-    <script src="js/hoverdir.js"></script> -->
-
-
 
 </body>
 </html>
