@@ -7,7 +7,7 @@ var catIDs = {};
 var catExamples = [];
 var collectionTabData = {};
 $.ajaxSetup({async: false});
-const per_page = 8;
+const per_page = 12;
 let collectionTypesData = null;
 
 function createHtmlImage(id, colectie, descriere, image, classes) {
