@@ -83,14 +83,6 @@ function firstPage() {
     });
 }
 
-function addCollection(cat_id, colectie, descriere, image) {
-    container = document.getElementById("idb_9");
-    document.getElementById("id_9").caracal = "dsf";
-    console.log(collectionTabData);
-    var eml = createHtmlImage(100, "TOMNALAU", "ERU dsadas", "../date_impexcera/" + image, 4);
-    replaceRecordData(9, "MUEE", "CUEEE", "../date_impexcera/" + image);
-}
-
 function replaceRecordData(id, colectie, descriere, imagine) {
     var currentElement = document.getElementById('id_' + id.toString());
     if(currentElement === undefined) {
