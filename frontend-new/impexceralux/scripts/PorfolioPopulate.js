@@ -7,7 +7,6 @@ var catIDs = {};
 var catExamples = [];
 var collectionTabData = {};
 $.ajaxSetup({async: false});
-var demo = 500;
 const per_page = 8;
 let collectionTypesData = null;
 
@@ -26,14 +25,23 @@ function createHtmlImage(id, colectie, descriere, image, classes) {
     return element;
 }
 
+function addToCategory(container, cat, number, title) {
+    var categ = '<li><a class="btn btn-dark btn-radius btn-brd" data-toggle="tooltip" ' +
+                ' data-placement="top" title="' + number.toString() +
+                '" data-filter=".cat' + cat.toString() + '">' + title + '</a></li>';
+    paginationIndexes[".cat" + cat.toString()] = number;
+    catIDs[".cat" + cat.toString()] = cat;
+    container.appendChild(createElementFromHTML(categ));
+}
+
 function createCategories() {
     let totalClasses = 0;
+    let container = document.getElementById("cateories");
     $.ajax({
         type: "GET",
         url: 'http://localhost:3000/tips',
         data: {},
         success: function( data ) {
-            let container = document.getElementById("cateories");
             const containerDiv = document.getElementById("da-thumbs");
             totalClasses = data['tips'].length;
             collectionTypesData = data['tips'];
@@ -43,15 +51,10 @@ function createCategories() {
                     var element = createHtmlImage(j + i * per_page, "", "", "", i + 1);
                     containerDiv.appendChild(element)
                     var pageSize = Math.floor(data['tips'][i][1] / per_page) + (data['tips'][i][1] % per_page !== 0);
-                    containerMap[".cat" + (i + 1).toString() + ""] = pageSize;
+                    containerMap[".cat" + (i + 1).toString()] = pageSize;
                     collectionTabData[i + 1].push(j + i * per_page)
                 }
-                var categ = '<li><a class="btn btn-dark btn-radius btn-brd" data-toggle="tooltip" ' +
-                            ' data-placement="top" title="' + data['tips'][i][1].toString() +
-                            '" data-filter=".cat' + (i + 1).toString() + '">' + data['tips'][i][0] + '</a></li>';
-                paginationIndexes[".cat" + (i + 1).toString()] = data['tips'][i][0];
-                catIDs[".cat" + (i + 1).toString()] = i + 1;
-                container.appendChild(createElementFromHTML(categ));
+                addToCategory(container, i + 1, data['tips'][i][1], data['tips'][i][0]);
             }
         },
         dataType: 'json'
@@ -65,7 +68,19 @@ function createCategories() {
     for(var i = 0; i < totalClasses; i++) {
         fillWithCollectionItems(collectionTypesData[i][0], i, 1);
     }
-    console.log(collectionTabData);
+}
+
+function firstPage() {
+    $(function() {
+        function refreshWaypoints() {
+            setTimeout(function() {
+            }, 3000);
+        }
+        var $container = $('.portfolio');
+        createPaginations('.cat1');
+        $container.isotope({ filter: '.cat1' }, refreshWaypoints());
+        return false;
+    });
 }
 
 function addCollection(cat_id, colectie, descriere, image) {
@@ -89,12 +104,19 @@ function replaceRecordData(id, colectie, descriere, imagine) {
 
 function fillWithCollectionItems(collectionTypesData, idsOffset, page) {
     var realIndex = 0;
+    var queryData = "&tip=";
     for(var i = 0; i < per_page; i++) {
         $('#id_' + (idsOffset * per_page + i).toString()).hide();
     }
+    if(collectionTypesData !== null) {
+        queryData += collectionTypesData;
+    }
+    else {
+        queryData = "";
+    }
     $.ajax({
         type: "GET",
-        url: 'http://localhost:3000/portfolio_all?page=' + page.toString() + '&per_page=' + per_page.toString() + "&tip=" + collectionTypesData,
+        url: 'http://localhost:3000/portfolio_all?page=' + page.toString() + '&per_page=' + per_page.toString() + queryData,
         data: {},
         success: function( data ) {
             for(var i = 0; i < data['data'].length; i++) {
@@ -142,3 +164,4 @@ function beginAnimation() {
     hoveriing();
 }
 createCategories();
+firstPage();

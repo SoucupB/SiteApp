@@ -138,7 +138,6 @@ function hoveriing() {
 
 function queryTransform() {
 	(function ($) {
-			console.log("DADADA");
 			var $container = $('.portfolio'),
 					colWidth = function () {
 							var w = $container.width(),

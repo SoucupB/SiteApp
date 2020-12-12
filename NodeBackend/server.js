@@ -24,7 +24,7 @@ app.get('/portfolio', function(req, res){
 });
 
 function filterBy(data, filterParam, filterData) {
-  if(filterData === undefined) {
+  if(filterData === undefined || filterData == 'all') {
     return data;
   }
   return data.filter(function(item) {
@@ -97,6 +97,7 @@ app.get('/tips', function(req, res){
   res.setHeader('Access-Control-Allow-Credentials', true);
   var colectionDict = {};
   var colections = [];
+  colections.push(['all', remains['colectii'].length])
   for(var i = 0; i < remains['colectii'].length; i++) {
     if(remains['colectii']) {
       var response = remains['colectii'][i]['tip'].replace(/\s/g, '');
