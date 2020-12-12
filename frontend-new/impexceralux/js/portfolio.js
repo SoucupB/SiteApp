@@ -175,7 +175,6 @@ function queryTransform() {
 					}
 					$('nav.portfolio-filter ul a').on('click', function() {
 							var selector = $(this).attr('data-filter');
-							console.log(selector);
 							createPaginations(selector.toString());
 							$container.isotope({ filter: selector }, refreshWaypoints());
 							$('nav.portfolio-filter ul a').removeClass('active');

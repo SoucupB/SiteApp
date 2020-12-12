@@ -9,6 +9,7 @@ var collectionTabData = {};
 $.ajaxSetup({async: false});
 var demo = 500;
 const per_page = 8;
+let collectionTypesData = null;
 
 function createHtmlImage(id, colectie, descriere, image, classes) {
     const newId = id.toString();
@@ -27,7 +28,6 @@ function createHtmlImage(id, colectie, descriere, image, classes) {
 
 function createCategories() {
     let totalClasses = 0;
-    let collectionTypesData = null;
     $.ajax({
         type: "GET",
         url: 'http://localhost:3000/tips',
@@ -39,10 +39,10 @@ function createCategories() {
             collectionTypesData = data['tips'];
             for(var i = 0; i < data['tips'].length; i++) {
                 collectionTabData[i + 1] = [];
-                //fullRequest("&tip=" + data['tips'][i][0], (i + 1), 1, 8);
                 for(var j = 0; j < per_page; j++) {
                     var element = createHtmlImage(j + i * per_page, "alarak", "alarak", "../date_impexcera/adarve_prez.jpg", i + 1);
-                    console.log(containerDiv.appendChild(element));
+                   // console.log(containerDiv.appendChild(element));
+                    containerDiv.appendChild(element)
                     var pageSize = Math.floor(data['tips'][i][1] / per_page) + (data['tips'][i][1] % per_page !== 0);
                     containerMap[".cat" + (i + 1).toString() + ""] = pageSize;
                     collectionTabData[i + 1].push(j + i * per_page)
@@ -90,6 +90,9 @@ function replaceRecordData(id, colectie, descriere, imagine) {
 
 function fillWithCollectionItems(collectionTypesData, idsOffset, page) {
     var realIndex = 0;
+    for(var i = 0; i < per_page; i++) {
+        $('#id_' + (idsOffset * per_page + i).toString()).hide();
+    }
     $.ajax({
         type: "GET",
         url: 'http://localhost:3000/portfolio_all?page=' + page.toString() + '&per_page=' + per_page.toString() + "&tip=" + collectionTypesData,
@@ -112,7 +115,7 @@ function fullRequest(requestString, classIndex, page, per_page) {
         url: 'http://localhost:3000/portfolio_all?page=' + page.toString() + '&per_page=' + per_page.toString() + requestString,
         data: {},
         success: function( data ) {
-            let container = document.getElementById("da-thumbs")
+            let container = document.getElementById("da-thumbs");
             for(var i = 0; i < data['data'].length; i++) {
                 if(data['data'][i]['img'] != null) {
                     collectionTabData[classIndex].push(totalClasses);
@@ -126,12 +129,8 @@ function fullRequest(requestString, classIndex, page, per_page) {
     });
 }
 
-function showPageAt(catID, page, per_page) {
-
-}
-
 function highlightPag(pagination, cat_id) {
-    fullRequest("&tip=" + paginationIndexes[cat_id], catIDs[cat_id], pagination, 8);
+    fillWithCollectionItems(collectionTypesData[catIDs[cat_id] - 1][0], catIDs[cat_id] - 1, pagination + 1);
     for(var i = 0; i < catExamples.length; i++) {
         document.getElementById(catExamples[i]).removeAttribute("class");
     }
