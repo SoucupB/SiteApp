@@ -23,12 +23,31 @@ app.get('/portfolio', function(req, res){
   }
 });
 
-function filterBy(data, filterParam, filterData) {
-  if(filterData === undefined || filterData == 'all') {
+function filterBy(data, filterData, exclusiv) {
+  if(filterData === undefined || filterData.length === 0) {
     return data;
   }
+  for(var i = 0; i < filterData.length; i++) {
+    if(filterData[i][1] == 'all')
+      return data;
+  }
   return data.filter(function(item) {
-    return item[filterParam] == filterData;
+    if(exclusiv === 0) {
+      for(var i = 0; i < filterData.length; i++) {
+        if(item[filterData[i][0]] === filterData[i][1]) {
+          return 1;
+        }
+      }
+      return 0;
+    }
+    else {
+      for(var i = 0; i < filterData.length; i++) {
+        if(item[filterData[i][0]] !== filterData[i][1]) {
+          return 0;
+        }
+      }
+      return 1;
+    }
   });
 }
 
@@ -51,8 +70,8 @@ app.get('/portfolio_all', function(req, res){
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
   res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
   res.setHeader('Access-Control-Allow-Credentials', true);
-  var data = filterBy(remains['colectii'], 'tip', req.query.tip);
-  data = filterBy(data, 'colectie', req.query.colectie);
+
+  var data = filterBy(remains['colectii'], [['tip', req.query.tip], ['colectie', req.query.colectie]], 0);
   var page = req.query.page;
   var per_page = req.query.per_page;
   var pagesNumber = Math.floor(data.length / per_page) + (data.length % per_page !== 0);
@@ -125,6 +144,23 @@ app.get('/tips', function(req, res){
   res.json({"tips": colections})
 });
 
+function filterNullData(filtersData) {
+  var newfiltersData = [];
+  for(var i = 0; i < filtersData.length; i++) {
+    if(filtersData[i][1] !== null && filtersData[i][1] !== undefined) {
+      if(Array.isArray(filtersData[i][1])) {
+        for(var j = 0; j < filtersData[i][1].length; j++) {
+          newfiltersData.push([filtersData[i][0], filtersData[i][1][j]]);
+        }
+      }
+      else {
+        newfiltersData.push(filtersData[i]);
+      }
+    }
+  }
+  return newfiltersData;
+}
+
 app.get('/elements', function(req, res){
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
@@ -139,9 +175,40 @@ app.get('/elements', function(req, res){
       elements = elements.concat(pruneBy(remains['colectii'][i]['elemente'], 'img'));
     }
   }
+  var filtersData = filterNullData([['culoare', req.query.culoare], ['dimensiuni', req.query.dimensiuni], ['categorie', req.query.categorie]])
+  elements = filterBy(elements, filtersData, 0);
   var pagesNumber = Math.floor(elements.length / per_page) + (elements.length % per_page !== 0);
   let pagination = paginate(elements, per_page, page);
   res.json({"elements": pagination, "pages": pagesNumber});
+});
+
+function getUniqueDatas(records, atr) {
+  var dictRecords = {};
+  for(var i = 0; i < records.length; i++) {
+    if(records[i][atr] !== 'null') {
+      dictRecords[records[i][atr]] = 1;
+    }
+  }
+  return Object.keys(dictRecords);
+}
+
+app.get('/elementsAttrs', function(req, res){
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+  res.setHeader('Access-Control-Allow-Credentials', true);
+  console.log("REQUEST ELEMENTS!");
+  elements = [];
+  var atr = req.query.atr;
+  for(var i = 0; i < remains['colectii'].length; i++) {
+    if(remains['colectii'][i]['elemente'] !== undefined) {
+      elements = elements.concat(pruneBy(remains['colectii'][i]['elemente'], 'img'));
+    }
+  }
+  if(atr === undefined) {
+    res.json({"records": []})
+  }
+  res.json({"records": getUniqueDatas(elements, atr).sort()})
 });
 
 app.listen(3000);
