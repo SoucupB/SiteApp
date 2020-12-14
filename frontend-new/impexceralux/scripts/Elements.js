@@ -6,8 +6,8 @@ var filters = null;
 var lastPaginationIndex = 1;
 
 function createMagElement(photo, titlu, id) {
-  var htmlElement = "<div class='gallery' id = el_" + id.toString() + ">" +
-                    " <a target='_blank' href=../date_impexcera/" + photo + ">" +
+  var htmlElement = "<div onclick = 'disableDiv()' class='gallery' id = el_" + id.toString() + ">" +
+                    " <a target='_blank' href='element.html?titlu=" + titlu + "'>" +
                     "   <img src=../date_impexcera/" + photo + " alt='Cinque Terre'>" +
                     " </a>" +
                     "<div class='descr'>" + titlu + "</div>";
@@ -97,6 +97,11 @@ function populateElements(page, per_page) {
     dataType: 'json'
   });
   console.log(url);
+}
+
+function disableDiv() {
+  console.log("DSADADA");
+  $('#portfolio').attr("disabled", false);
 }
 
 function addTitle(title) {

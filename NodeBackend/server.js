@@ -7,6 +7,18 @@ const fs = require('fs');
 let rawdata = fs.readFileSync('../frontend-new/date_impexcera/dateDB.json');
 let remains = JSON.parse(rawdata);
 var imge = '../frontend-new/date_impexcera/';
+var preloadedBuffer = {};
+
+function preload() {
+  for(var i = 0; i < remains['colectii'].length; i++) {
+    preloadedBuffer[remains['colectii'][i]['IDnum']] = remains['colectii'][i];
+    if(remains['colectii'][i]['elemente'] !== null) {
+      for(var j = 0; j < remains['colectii'][i]['elemente'].length; j++) {
+        preloadedBuffer[remains['colectii'][i]['elemente'][j]['IDnum']] = remains['colectii'][i]['elemente'][j];
+      }
+    }
+  }
+}
 
 console.log("Server started and data recieved!");
 app.get('/portfolio', function(req, res){
@@ -211,4 +223,5 @@ app.get('/elementsAttrs', function(req, res){
   res.json({"records": getUniqueDatas(elements, atr).sort()})
 });
 
+preload();
 app.listen(3000);
