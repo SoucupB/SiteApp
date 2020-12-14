@@ -3,6 +3,7 @@ let numberOfPages = 0;
 let idMaps = {};
 let totalCheckerIds = [];
 var filters = null;
+var lastPaginationIndex = 1;
 
 function createMagElement(photo, titlu, id) {
   var htmlElement = "<div class='gallery' id = el_" + id.toString() + ">" +
@@ -51,7 +52,14 @@ function deleteElements() {
 function changePag(id) {
   deleteElements();
   populateElements(id, per_page);
+  activatePage(id);
   return false;
+}
+
+function activatePage(page) {
+  document.getElementById('pag_' + lastPaginationIndex).removeAttribute("class");
+  document.getElementById('pag_' + page).setAttribute("class", "active");
+  lastPaginationIndex = page;
 }
 
 function createCheckboxLine(title, id, idPrefix) {
@@ -125,15 +133,15 @@ function populateCheckboxes(atr) {
 
 function searchFilterData() {
   var selData = getAllSelectedData();
-  if(selData.length === 0) {
-    changePag(1);
-    return false;
-  }
   filters = selData;
+  if(selData.length === 0) {
+    filters = null;
+  }
   deleteElements();
   deletePagination(numberOfPages);
   populateElements(1, per_page);
   createPaginations(numberOfPages);
+  activatePage(1);
   return false;
 }
 
@@ -144,3 +152,4 @@ addTitle('Dimensiuni');
 populateCheckboxes('dimensiuni');
 addTitle('Culoare');
 populateCheckboxes('culoare');
+activatePage(1);
