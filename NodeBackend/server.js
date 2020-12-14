@@ -32,6 +32,20 @@ function filterBy(data, filterParam, filterData) {
   });
 }
 
+function paginate(array, page_size, page_number) {
+  return array.slice((page_number - 1) * page_size, page_number * page_size);
+}
+
+function pruneBy(buffer, elements) {
+  var elm = [];
+  for(var i = 0; i < buffer.length; i++) {
+    if(buffer[i][elements] !== null) {
+      elm.push(buffer[i]);
+    }
+  }
+  return elm;
+}
+
 app.get('/portfolio_all', function(req, res){
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
@@ -41,13 +55,9 @@ app.get('/portfolio_all', function(req, res){
   data = filterBy(data, 'colectie', req.query.colectie);
   var page = req.query.page;
   var per_page = req.query.per_page;
-  var left = per_page * (page - 1);
-  if(left >= data.length) {
-    res.json([]);
-  }
-  var right = Math.min(data.length, per_page * page);
   var pagesNumber = Math.floor(data.length / per_page) + (data.length % per_page !== 0);
-  res.json({"data": data.slice(left, right), "pages": pagesNumber});
+  let pagination = paginate(data, per_page, page);
+  res.json({"data": pagination, "pages": pagesNumber});
 });
 
 app.get('/image', function(req, res){
@@ -113,6 +123,25 @@ app.get('/tips', function(req, res){
     colections.push([key, colectionDict[key]]);
   }
   res.json({"tips": colections})
+});
+
+app.get('/elements', function(req, res){
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+  res.setHeader('Access-Control-Allow-Credentials', true);
+  console.log("REQUEST ELEMENTS!");
+  elements = [];
+  var page = req.query.page;
+  var per_page = req.query.per_page;
+  for(var i = 0; i < remains['colectii'].length; i++) {
+    if(remains['colectii'][i]['elemente'] !== undefined) {
+      elements = elements.concat(pruneBy(remains['colectii'][i]['elemente'], 'img'));
+    }
+  }
+  var pagesNumber = Math.floor(elements.length / per_page) + (elements.length % per_page !== 0);
+  let pagination = paginate(elements, per_page, page);
+  res.json({"elements": pagination, "pages": pagesNumber});
 });
 
 app.listen(3000);

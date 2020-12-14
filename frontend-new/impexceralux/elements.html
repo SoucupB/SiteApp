@@ -70,8 +70,8 @@
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="index.html">Home</a></li>
-                        <li><a class="active" href="portfolio.html">Colectii</a></li>
-                        <li><a href="elements.html">Elemente</a></li>
+                        <li><a href="portfolio.html">Colectii</a></li>
+                        <li><a href="elements.html" class="active" >Elemente</a></li>
                         <li><a href="magazin.html">Produse</a></li>
                         <li><a href="3D.html">3D Tour</a></li>
                         <li><a href="about-us.html">Despre noi</a></li>
@@ -94,31 +94,67 @@
         }
 
         div.gallery img {
-          width: 100%;
-          height: auto;
+          width: 180px;
+          height: 180px;
         }
 
         div.descr {
           padding: 15px;
           text-align: center;
+          background-color: rgb(92, 92, 92);
+        }
+
+        div.boxing {
+            position: relative;
+            left: 500px;
+            height: 100%;
+            width: 50.1%;
+            margin: 5px;
+            float: left;
+            border: 1px outset rgb(61, 61, 61);
+            background-color: rgb(255, 255, 255);
+        }
+
+        div.pagination1 {
+            position: relative;
+            text-align: center;
+        }
+
+        div.pagination1 a {
+            color: black;
+            padding: 8px 16px;
+            left: 500px;
+            text-decoration: none;
+            transition: background-color .3s;
+            border: 1px solid #1f1f1f;
+        }
+
+        div.pagination1 a.active {
+            background-color: #008dd2;
+            color: #ffffff;
+            border: 1px solid #008dd2;
+        }
+
+        div.pagination1 a:hover:not(.active) {
+            cursor: pointer;
+            color: rgba(255, 255, 255);
+            background: #e21d24;
         }
     </style>
 
     <div id="portfolio" class="section wb">
         <div class="container">
             <div class="section-title text-center">
-                <h3>Colectii</h3>
-                <p class="lead">Colectiile sunt de la urmatoarele marci: ATEM, BESTILE, EGESERAMIC, ESTIMA, Andreea Seramic, Alaplana, Peraseramic, RAK</p>
+                <h3>Materiale</h3>
             </div>
         </div>
-        <div class="gallery">
-            <a target="_blank" href="../date_impexcera/1.jpg">
-              <img src="../date_impexcera/1.jpg" alt="Cinque Terre" style="width:'900'; height:'400';">
-            </a>
-            <div class="descr">Add a description of the image here</div>
+        <div id = 'pagi' class="pagination1">
+            <a id = start_pag>&laquo;</a>
         </div>
-    </div><!-- end section -->
-    <!-- pana acii-->
+        <div id = 'elements' class="boxing">
+        </div>
+    </div>
+
 
     <div class="copyrights">
         <div class="container">
@@ -131,5 +167,7 @@
     </div>
 
     <a href="#" id="scroll-to-top" class="dmtop global-radius"><i class="fa fa-angle-up"></i></a>
+    <script src='scripts/Utils.js'></script>
+    <script src='scripts/Elements.js'></script>
 </body>
 </html>

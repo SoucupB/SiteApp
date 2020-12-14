@@ -144,7 +144,7 @@
                "id":"sg",
                "categorie":"faianta",
                "culoare":"albastru",
-               "img":"strauss_gris_25x75.jpg",
+               "img":"strauss_gris_25x75",
                "dimensiuni":"25x75"
             }
          ]
@@ -1506,7 +1506,7 @@
             {
                "id":"sn-y",
                "categorie":"gresie",
-               "culoare":"maro",
+               "culoare":"maro",  
                "img":null,
                "dimensiuni":"15x60"
             },
@@ -1647,7 +1647,7 @@
                "id":"031",
                "categorie":"decor",
                "culoare":"maro",
-               "img":"decoremperador_031.jpg",
+               "img":"decoremperador_031-1emp.jpg",
                "dimensiuni":"46x50"
             },
             {
