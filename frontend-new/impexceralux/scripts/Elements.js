@@ -5,9 +5,9 @@ let totalCheckerIds = [];
 var filters = null;
 var lastPaginationIndex = 1;
 
-function createMagElement(photo, titlu, id) {
+function createMagElement(photo, titlu, id, uniqID) {
   var htmlElement = "<div onclick = 'disableDiv()' class='gallery' id = el_" + id.toString() + ">" +
-                    " <a target='_blank' href='element.html?titlu=" + titlu + "'>" +
+                    " <a target='_blank' href='element.html?id=" + uniqID + "'>" +
                     "   <img src=../date_impexcera/" + photo + " alt='Cinque Terre'>" +
                     " </a>" +
                     "<div class='descr'>" + titlu + "</div>";
@@ -15,9 +15,9 @@ function createMagElement(photo, titlu, id) {
   return element;
 }
 
-function addElement(photo, titlu, id) {
+function addElement(photo, titlu, id, uniqID) {
   var parent = document.getElementById('elements');
-  parent.appendChild(createMagElement(photo, titlu, id));
+  parent.appendChild(createMagElement(photo, titlu, id, uniqID));
 }
 
 function createPaginations(number) {
@@ -91,7 +91,7 @@ function populateElements(page, per_page) {
     success: function( data ) {
       numberOfPages = data['pages'];
       for(var i = 0; i < data['elements'].length; i++) {
-        addElement(data['elements'][i]['img'], data['elements'][i]['categorie'] + " " + data['elements'][i]['culoare'], i);
+        addElement(data['elements'][i]['img'], data['elements'][i]['categorie'] + " " + data['elements'][i]['culoare'], i, data['elements'][i]['IDnum']);
       }
     },
     dataType: 'json'

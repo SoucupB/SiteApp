@@ -223,5 +223,19 @@ app.get('/elementsAttrs', function(req, res){
   res.json({"records": getUniqueDatas(elements, atr).sort()})
 });
 
+app.get('/getElementByID', function(req, res){
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+  res.setHeader('Access-Control-Allow-Credentials', true);
+  console.log("REQUEST ELEMENTS!");
+  elements = [];
+  var id = req.query.id;
+  if(id === undefined) {
+    res.json({"record": []})
+  }
+  res.json({"record": preloadedBuffer[id]})
+});
+
 preload();
 app.listen(3000);

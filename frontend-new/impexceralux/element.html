@@ -2,6 +2,7 @@
 <html lang="en">
 
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -140,15 +141,60 @@
             color: rgba(255, 255, 255);
             background: #e21d24;
         }
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+        .img-magnifier-container {
+            position:relative;
+        }
+
+        .img-magnifier-glass {
+            position: relative;
+            border: 3px solid #000;
+            border-radius: 50%;
+            cursor: none;
+            width: 100px;
+            height: 100px;
+        }
     </style>
 
-    <div id="portfolio" class="section wb">
+
+    <div id="portfolio" class="section wb img-magnifier-container">
         <div class="container">
             <div class="section-title text-center">
-                <h3>Materiale</h3>
+                <h3 id = 'title'></h3>
             </div>
         </div>
     </div>
+    <button style = 'position: relative;'; onclick='return activateMagnifier()'>Magnify</button>
+    <table>
+        <tr>
+          <th>Id</th>
+          <th>Categorie</th>
+          <th>Culoare</th>
+          <th>Dimensiuni</th>
+          <th>Colectie</th>
+        </tr>
+        <tr>
+          <td id='0'>Alfreds Futterkiste</td>
+          <td id='1'>Maria Anders</td>
+          <td id='2'>Germany</td>
+          <td id='3'>Germany</td>
+          <td id='4'>Germany</td>
+        </tr>
+    </table>
 
 
     <div class="copyrights">
@@ -162,6 +208,7 @@
     </div>
 
     <a href="#" id="scroll-to-top" class="dmtop global-radius"><i class="fa fa-angle-up"></i></a>
-    <script src='scripts/Utils.js'></script>
+    <script type="text/javascript" src='scripts/Utils.js'></script>
+    <script type="text/javascript" src='scripts/Element.js'></script>
 </body>
 </html>
