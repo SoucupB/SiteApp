@@ -66,7 +66,7 @@ function createCheckboxLine(title, id, idPrefix) {
   let c_id = idPrefix + '_' + id.toString();
   idMaps[c_id] = idPrefix;
   totalCheckerIds.push(c_id);
-  var htmlChecker = '<div><input id = ' + c_id + ' type="checkbox" name="startingReserves" value="starting" id="starting"><label id = _' + c_id + ' for="starting">'
+  var htmlChecker = '<div><input id = ' + c_id + ' type="checkbox" name="startingReserves" value="starting" id="starting" onclick="searchFilterData()"> <label id = _' + c_id + ' for="starting">'
                      + title + '</label></div>';
   return createElementFromHTML(htmlChecker);
 }
@@ -129,7 +129,7 @@ function populateCheckboxes(atr) {
     success: function( data ) {
       var checkers = document.getElementById('checkboxes');
       for(var i = 0; i < data['records'].length; i++) {
-        checkers.appendChild(createCheckboxLine(data['records'][i], i, atr));
+        if(data['records'][i]!="null")checkers.appendChild(createCheckboxLine(data['records'][i], i, atr));
       }
     },
     dataType: 'json'

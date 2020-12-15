@@ -21,7 +21,7 @@
                {
                    "id": "071",
                    "categorie": "gresie",
-                   "culoare": "light_gray",
+                   "culoare": "gri",
                    "img": "2.jpg",
                    "dimensiuni": "23x50",
                    "IDnum": 2,
@@ -558,7 +558,7 @@
                {
                    "id": "kag",
                    "categorie": "gresie",
-                   "culoare": "alb-gri",
+                   "culoare": "alb",
                    "img": "karine1.jpg",
                    "dimensiuni": "40x80",
                    "IDnum": 58,
@@ -706,7 +706,7 @@
                {
                    "id": "071",
                    "categorie": "gresie",
-                   "culoare": "alb marmurat",
+                   "culoare": "alb",
                    "img": "artic071.jpg",
                    "dimensiuni": "60x120",
                    "IDnum": 73,
@@ -1258,7 +1258,7 @@
                {
                    "id": "2360 131 061",
                    "categorie": "faianta",
-                   "culoare": "gray",
+                   "culoare": "gri",
                    "img": "6.jpg",
                    "dimensiuni": "23x60",
                    "IDnum": 131,
@@ -1267,7 +1267,7 @@
                {
                    "id": "2360 131 061-1",
                    "categorie": "faianta",
-                   "culoare": "light_gray",
+                   "culoare": "gri",
                    "img": "7.jpg",
                    "dimensiuni": "23x60",
                    "IDnum": 132,
@@ -1285,7 +1285,7 @@
                {
                    "id": "brau 131 061",
                    "categorie": "brau",
-                   "culoare": "white",
+                   "culoare": "alb",
                    "img": "9.jpg",
                    "dimensiuni": "8,2x23",
                    "IDnum": 134,
@@ -1294,7 +1294,7 @@
                {
                    "id": "brau2 131 061",
                    "categorie": "brau",
-                   "culoare": "white",
+                   "culoare": "alb",
                    "img": "10.jpg",
                    "dimensiuni": "23x6",
                    "IDnum": 135,
@@ -1324,7 +1324,7 @@
                {
                    "id": "071",
                    "categorie": "faianta",
-                   "culoare": "light_gray",
+                   "culoare": "gri",
                    "img": "12.jpg",
                    "dimensiuni": "23x50",
                    "IDnum": 138,
@@ -1419,7 +1419,7 @@
                {
                    "id": "h-blanco",
                    "categorie": "gresie",
-                   "culoare": "alba",
+                   "culoare": "alb",
                    "img": "himalaya_blanco.jpg",
                    "dimensiuni": "17x52",
                    "IDnum": 148,
@@ -1735,7 +1735,7 @@
                {
                    "id": "071",
                    "categorie": "faianta",
-                   "culoare": "alba",
+                   "culoare": "alb",
                    "img": "metro_071.jpg",
                    "dimensiuni": "23x50",
                    "IDnum": 181,
