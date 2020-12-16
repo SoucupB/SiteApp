@@ -84,6 +84,8 @@ app.get('/portfolio_all', function(req, res){
   res.setHeader('Access-Control-Allow-Credentials', true);
 
   var data = filterBy(remains['colectii'], [['tip', req.query.tip], ['colectie', req.query.colectie]], 0);
+  data = pruneBy(data, 'img');
+  //console.log(data.length, pruneBy(data, 'img').length);
   var page = req.query.page;
   var per_page = req.query.per_page;
   var pagesNumber = Math.floor(data.length / per_page) + (data.length % per_page !== 0);

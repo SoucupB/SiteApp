@@ -51,7 +51,6 @@ function createCategories() {
                     var element = createHtmlImage(j + i * per_page, "", "", "", i + 1);
                     containerDiv.appendChild(element)
                     var pageSize = Math.floor(data['tips'][i][1] / per_page) + (data['tips'][i][1] % per_page !== 0);
-                    containerMap[".cat" + (i + 1).toString()] = pageSize;
                     collectionTabData[i + 1].push(j + i * per_page)
                 }
                 addToCategory(container, i + 1, data['tips'][i][1], data['tips'][i][0]);
@@ -111,10 +110,17 @@ function fillWithCollectionItems(collectionTypesData, idsOffset, page) {
         url: 'http://localhost:3000/portfolio_all?page=' + page.toString() + '&per_page=' + per_page.toString() + queryData,
         data: {},
         success: function( data ) {
+            console.log(idsOffset);
+            containerMap[".cat" + (idsOffset + 1).toString()] = data['pages'];
+            var parcare = 0;
             for(var i = 0; i < data['data'].length; i++) {
-                if(data['data'][i]['img'] != null) {
+                if(data['data'][i]['img'] !== null) {
+                    parcare++;
                     $('#id_' + (idsOffset * per_page + realIndex).toString()).show();
                     replaceRecordData(idsOffset * per_page + realIndex++, data['data'][i]['colectie'], data['data'][i]['descriere'], "../date_impexcera/" + data['data'][i]['img'][0]);
+                }
+                else {
+                    console.log('ANA', data['data'][i]['IDnum'])
                 }
             }
         },
