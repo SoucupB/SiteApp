@@ -190,7 +190,17 @@ app.get('/elements', function(req, res){
     }
   }
   var filtersData = filterNullData([['culoare', req.query.culoare], ['dimensiuni', req.query.dimensiuni], ['categorie', req.query.categorie]])
-  elements = filterBy(elements, filtersData, 0);
+  var convData = []
+  for(var i = 0; i < filtersData.length; i++) {
+    if(i < filtersData.length - 1 && filtersData[i][0] === filtersData[i + 1][0]) {
+      convData.push([filtersData[i][0], filtersData[i][1]]);
+    }
+    else {
+      convData.push([filtersData[i][0], filtersData[i][1]]);
+      elements = filterBy(elements, convData, 0);
+      convData = []
+    }
+  }
   var pagesNumber = Math.floor(elements.length / per_page) + (elements.length % per_page !== 0);
   let pagination = paginate(elements, per_page, page);
   res.json({"elements": pagination, "pages": pagesNumber});
