@@ -85,7 +85,6 @@ app.get('/portfolio_all', function(req, res){
 
   var data = filterBy(remains['colectii'], [['tip', req.query.tip], ['colectie', req.query.colectie]], 0);
   data = pruneBy(data, 'img');
-  //console.log(data.length, pruneBy(data, 'img').length);
   var page = req.query.page;
   var per_page = req.query.per_page;
   var pagesNumber = Math.floor(data.length / per_page) + (data.length % per_page !== 0);
@@ -140,10 +139,11 @@ app.get('/tips', function(req, res){
   res.setHeader('Access-Control-Allow-Credentials', true);
   var colectionDict = {};
   var colections = [];
-  colections.push(['all', remains['colectii'].length])
-  for(var i = 0; i < remains['colectii'].length; i++) {
-    if(remains['colectii']) {
-      var response = remains['colectii'][i]['tip'].replace(/\s/g, '');
+  data = pruneBy(remains['colectii'], 'img');
+  colections.push(['all', data.length])
+  for(var i = 0; i < data.length; i++) {
+    if(data) {
+      var response = data[i]['tip'].replace(/\s/g, '');
       if(!colectionDict[response]) {
         colectionDict[response] = 1;
       }
