@@ -82,11 +82,13 @@ function firstPage() {
     });
 }
 
-function replaceRecordData(id, colectie, descriere, imagine) {
+function replaceRecordData(id, IDNum, colectie, descriere, imagine) {
     var currentElement = document.getElementById('id_' + id.toString());
     if(currentElement === undefined) {
         return 0;
     }
+    var a = document.getElementById('ida_' + id.toString());
+    a.setAttribute('href',"colectie.html?id="+IDNum)
     var collection = document.getElementById('idc_' + id.toString());
     var image = document.getElementById('idb_' + id.toString());
     collection.innerHTML = colectie + ' <small> ' + descriere + ' </small>';
@@ -117,7 +119,7 @@ function fillWithCollectionItems(collectionTypesData, idsOffset, page) {
                 if(data['data'][i]['img'] !== null) {
                     parcare++;
                     $('#id_' + (idsOffset * per_page + realIndex).toString()).show();
-                    replaceRecordData(idsOffset * per_page + realIndex++, data['data'][i]['colectie'], data['data'][i]['descriere'], "../date_impexcera/" + data['data'][i]['img'][0]);
+                    replaceRecordData(idsOffset * per_page + realIndex++,data['data'][i]['IDnum'] ,data['data'][i]['colectie'], data['data'][i]['descriere'], "../date_impexcera/" + data['data'][i]['img'][0]);
                 }
                 else {
                     console.log('ANA', data['data'][i]['IDnum'])
