@@ -36,25 +36,22 @@ function loadImage(photo) {
   getFormatedStyle(photo);
 }
 
-function loadTitle(title) {
-  document.getElementById('title').innerHTML = capitalizeFirstLetter(title);
+function loadTitle(data) {
+  var title =  capitalizeFirstLetter(data['categorie'])+" "+ capitalizeFirstLetter(data['colectie']);
+  document.getElementById('title').innerHTML = title;
 }
 
 function loadData(data) {
-  document.getElementById('0').innerHTML = data['id']
-  document.getElementById('1').innerHTML = data['categorie']
-  document.getElementById('2').innerHTML = data['culoare']
-  document.getElementById('3').innerHTML = data['dimensiuni']
-  $.ajax({
-    type: "GET",
-    url: 'http://localhost:3000/getElementByID?id=' + data['ColectionID'],
-    data: {},
-    success: function( record ) {
-      console.log(record)
-      document.getElementById('4').innerHTML = record['record']['colectie']
-    },
-    dataType: 'json'
-  });
+  if(data['culoare']){
+    document.getElementById('2').innerHTML = 'Culoare: '+ capitalizeFirstLetter(data['culoare']);
+  }
+  else{
+    document.getElementById('2').remove();
+  }
+  document.getElementById('1').innerHTML = 'Tip placa: '+ capitalizeFirstLetter(data['categorie']);
+  document.getElementById('3').innerHTML = 'Dimensiune: '+ data['dimensiuni']+' cm';
+  document.getElementById('4').innerHTML ="Colectie: "+ capitalizeFirstLetter(data['colectie']);
+
 }
 
 function getElement() {
@@ -64,7 +61,7 @@ function getElement() {
     data: {},
     success: function( data ) {
       loadImage(data['record']['img']);
-      loadTitle(data['record']['categorie']);
+      loadTitle(data['record']);
       loadData(data['record']);
     },
     dataType: 'json'

@@ -72,8 +72,7 @@
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="index.html">Home</a></li>
                         <li><a href="portfolio.html">Colectii</a></li>
-                        <li><a href="elements.html" class="active" >Elemente</a></li>
-                        <li><a href="magazin.html">Produse</a></li>
+                        <li><a href="elements.html" class="active" >Produse</a></li>
                         <li><a href="3D.html">3D Tour</a></li>
                         <li><a href="about-us.html">Despre noi</a></li>
                         <li><a href="contact.html">Contact</a></li>
@@ -169,18 +168,142 @@
             height: 100px;
         }
         
+        .pricing-table {
+        position: relative;
+        display: block;
+        margin: 0 5px;
+        float: left;
+        width: 300px;
+        background: #ffffff;
+        font-family: Roboto, Helvetica, sans-serif;
+        text-align: center;
+        }
+
+        .premium {
+        border-top: 3px solid #008dd2;
+        border-bottom: 3px solid #008dd2;
+        }
+        .pricing-table span {
+        display: block;
+        }
+        .table-head {
+        padding: 25px 0;
+        font-size: 28px;
+        font-weight: bold;
+        }
+
+        .premium .table-head {
+        color: #008dd2;
+        }
+        .price {
+        padding: 8px 0;
+        font-size: 32px;
+        font-weight: bold;
+        color: #ffffff;
+        }
+        .premium .price {
+        background: #008dd2;
+        }
+        .table-row {
+        padding: 10px 0;
+        font-size: 14px;
+        font-weight: 400;
+        color: #888;
+        }
+        .table-row:nth-child(2n) {
+        background: #f7f7f7;
+        }
+        .purchase {
+        padding: 35px 0;
+        }
+        a.buy {
+        position: relative;
+        display: inline-block;
+        z-index: 5;
+        padding: 7px 15px;
+        border-radius: 4px;
+        text-decoration: none;
+        font-size: 16px;
+        font-weight: 500;
+        -webkit-transition: color .2s ease, background .5s ease;
+        -o-transition: color .2s ease, background .5s ease;
+        transition: color .2s ease, background .5s ease;
+        overflow: hidden;
+        }
+        .premium a.buy {
+        border: 2px solid #008dd2;
+        color: #008dd2;
+        }
+        a.buy:hover {
+        color: #ffffff;
+        }
+        .premium a.buy:hover {
+        background: #008dd2;
+        }
+        a.buy:after {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        display: block;
+        z-index: -1;
+        width: 100%;
+        height: 0;
+        content: '';
+        -webkit-transition: all .2s ease;
+        -o-transition: all .2s ease;
+        transition: all .2s ease;
+        }
+
+        .premium a.buy:after {
+        background: #008dd2;
+        }
+        a.buy:hover:after {
+        height: 100%;
+        }
+        
+
+        
+        div.row1{
+            width: 100%;
+            text-align: center;
+        } 
+
+           div.block {
+            width: 100px;
+            display: inline-block;
+           }
     </style>
 
 
-    <div id="portfolio" class="section wb img-magnifier-container">
-        <div class="container">
-            <div class="section-title text-center">
-                <h3 id = 'title'></h3>
+    <div class="section wb">
+        <div  class="container">
+            <div class='row1'>
+                <div class="section-title text-center">
+                    <h3>Descriere produs</h3>
+                </div>
+                <div id="portfolio" class='block'>
+                    <!--h3 id = 'title'></h3-->
+                </div>
+                <div class="pricing-table premium">
+                    <span id = 'title' class="table-head"></span>
+                    <!--span class="price">
+                        Gratis daca comanzi acum!
+                    </span-->
+                    <!-- nu cred ca mai tinem asta dar il comentez momentan span id='0' class="table-row">ID</span-->
+                    <span id='1' class="table-row">Tip placa: </span>
+                    <span id='2' class="table-row">Culoare: </span>
+                    <span id='3' class="table-row">Dimensiune: </span>
+                    <span id='4' class="table-row">Colectie: </span>
+                    <div class="purchase">
+                        <a href="#" class="buy">Obtine oferta</a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <button style = 'position: relative;'; onclick='return activateMagnifier()'>Magnify</button>
-    <table>
+        
+    <!--button style = 'position: relative;'; onclick='return activateMagnifier()'>Magnify</button-->
+    <!--table>
         <tr>
           <th>Id</th>
           <th>Categorie</th>
@@ -195,7 +318,9 @@
           <td id='3'>Germany</td>
           <td id='4'>Germany</td>
         </tr>
-    </table>
+    </table-->
+
+    
 
 
     <div class="copyrights">
