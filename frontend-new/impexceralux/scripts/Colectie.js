@@ -21,7 +21,7 @@ function getFormatedStyle(photo) {
 
 function createSliderDivs(photo,i) {
   var block = "block";
-  if (i>1)block ="none"; 
+  if (i>1)block ="none";
   //onclick=showSlides("+i.toString()+)>"
   var htmlElement = "<div class = 'mySlides' style='display:"+block+";'>" +
                     " <img src=../date_impexcera/" + photo + " style='width:100%'>" +
@@ -61,34 +61,29 @@ function loadDescription(description) {
 }
 
 function createPlaci(photo, nume, culoare, dimensiune,i){
-  var com1 ="";
-  var com2 ="";
-  if(culoare=="" || culoare=="null"||culoare==null){
-    com1 ="!--";
-    com2 ="--";
-    culoare = "null";
+  var color = "";
+  if(!(culoare === "" || culoare === "null" || culoare === null)){
+    color = "<p style='color:black'>Culoare: " + culoare + "</p>";
   }
   var htmlStuff = "<div class='col-md-4 col-sm-4 col-xs-12' style='width: 350px; height:150px margin-right: 20px;'><div class='service-widget' >"+
                       "<div class='post-media wow fadeIn'>"+
                           "<a target='_blank rel='noopener noreferrer' href='"+path+photo+"' data-rel='prettyPhoto[gal]' class='hoverbutton global-radius'><i class='flaticon-unlink'></i></a>"+
-                          //"<a href='uploads/service_01.jpg' data-rel='prettyPhoto[gal]' class='hoverbutton global-radius'><i class='flaticon-unlink'></i></a>"+
-                          //"<img src='uploads/service_01.jpg' alt='' class='img-responsive img-rounded'>"+
-                          "<img id='plm' src='"+path+photo+"' alt='' style='height:200px; width:140px;'>"+
+                          "<img id='plm' src='"+path+photo+"' alt='' style='height:200px; width: 320px;'>"+
                       "</div>"+
                       "<div class='service-dit'>"+
                           "<h3>"+nume+"</h3>"+
-                          "<"+com1+"p style='color:black'>Culoare: "+culoare+"</p"+com2+">"+
-                          "<p style='color:black'>Dimensiune: "+dimensiune+" cm</p>"+
+                          color+
+                          "<p style='color:black'>Dimensiune: " + dimensiune + " cm</p>"+
                       "</div>"+
                       "</div>"+
                   "</div>"
-    if (i%3==2){
-      htmlStuff+="</div>"
+    if (i % 3 === 2){
+      htmlStuff += "</div>";
     }
     return htmlStuff;
   }
-  
-  
+
+
   function loadData(data) {
     var parent = document.getElementById('placi');
     var elemente = data['elemente'];
@@ -104,14 +99,14 @@ function createPlaci(photo, nume, culoare, dimensiune,i){
         console.log(photo);
       }
       else{
-        photo = "alladin-bl.jpg"; 
+        photo = "alladin-bl.jpg";
       }
       var culoare = elemente[0]['culoare'];
       var dimensiune = elemente[0]['dimensiuni'];
       htmlStuff+="<div class='row text-center'>"+createPlaci(photo,nume,culoare,dimensiune,0)+"</div>";
       parent.appendChild(createElementFromHTML(htmlStuff));
     }
-    else{ 
+    else{
       for( i=0;i<elemente.length;i++){
         var nume = elemente[i]['categorie']+" "+ colectie+" "+elemente[i]['id'];
         //if(elemente[i]['img']!="null"||elemente[i]['img']!=null){
@@ -121,7 +116,7 @@ function createPlaci(photo, nume, culoare, dimensiune,i){
           console.log(photo);
         }
         else{
-          photo = "alladin-bl.jpg"; 
+          photo = "alladin-bl.jpg";
         }
         var culoare = elemente[i]['culoare'];
         var dimensiune = elemente[i]['dimensiuni'];
@@ -139,7 +134,7 @@ function createPlaci(photo, nume, culoare, dimensiune,i){
           ok=0;
           htmlStuff="";
         }
-      } 
+      }
       if(ok%3!=2){
         htmlStuff+="</div>";
       }
@@ -150,7 +145,7 @@ function createPlaci(photo, nume, culoare, dimensiune,i){
       }
     }
 }
-  
+
   function getElement() {
     $.ajax({
       type: "GET",
@@ -186,15 +181,15 @@ function showSlides(n) {
   var i;
   var slides = document.getElementsByClassName("mySlides");
   var dots = document.getElementsByClassName("mydot");
-  if (n > slides.length) {slideIndex = 1}    
+  if (n > slides.length) {slideIndex = 1}
   if (n < 1) {slideIndex = slides.length}
   for (i = 0; i < slides.length; i++) {
-    slides[i].style.display = "none";  
+    slides[i].style.display = "none";
     }
   for (i = 0; i < dots.length; i++) {
       dots[i].className = dots[i].className.replace(" active", "");
   }
-  slides[slideIndex-1].style.display = "block";  
+  slides[slideIndex-1].style.display = "block";
   dots[slideIndex-1].className += " active";
 }
 /*
