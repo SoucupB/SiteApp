@@ -127,7 +127,9 @@ function createElementsType() {
     url: 'http://localhost:3000/elementsAttrs?atr=categorie',
     data: {},
     success: function( data ) {
+      console.log(data['records'])
       data['records'].forEach(element => {
+        console.log(element);
         createDivButton(element, 5);
       });
     },
@@ -179,9 +181,5 @@ populateCheckboxes('dimensiuni');
 addTitle('Culoare');
 populateCheckboxes('culoare');
 activatePage(1);
-createElementsType();
-// createDivButton("ana are mere", 5);
-// createDivButton("vasile", 8);
-
 createElementsType();
 regulateButtons();
