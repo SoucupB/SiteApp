@@ -24,7 +24,7 @@ function createSliderDivs(photo,i) {
   if (i>1)block ="none";
   //onclick=showSlides("+i.toString()+)>"
   var htmlElement = "<div class = 'mySlides' style='display:"+block+";'>" +
-                    " <img src=../date_impexcera/" + photo + " style='width:100%'>" +
+                    " <img src=../date_impexcera/" + photo + " style='height:700px; width:100%'>" +
                     "</div>";
   var element = createElementFromHTML(htmlElement);
   return element;
