@@ -22,7 +22,6 @@ function getFormatedStyle(photo) {
 function createSliderDivs(photo,i) {
   var block = "block";
   if (i>1)block ="none";
-  //onclick=showSlides("+i.toString()+)>"
   var htmlElement = "<div class = 'mySlides' style='display:"+block+";'>" +
                     " <img src=../date_impexcera/" + photo + " style='height:700px; width:100%'>" +
                     "</div>";

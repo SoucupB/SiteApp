@@ -121,6 +121,20 @@ function getAllSelectedData() {
   return selectedData;
 }
 
+function createElementsType() {
+  $.ajax({
+    type: "GET",
+    url: 'http://localhost:3000/elementsAttrs?atr=categorie',
+    data: {},
+    success: function( data ) {
+      data['records'].forEach(element => {
+        createDivButton(element, 5);
+      });
+    },
+    dataType: 'json'
+  });
+}
+
 function populateCheckboxes(atr) {
   $.ajax({
     type: "GET",
@@ -129,7 +143,7 @@ function populateCheckboxes(atr) {
     success: function( data ) {
       var checkers = document.getElementById('checkboxes');
       for(var i = 0; i < data['records'].length; i++) {
-        if(data['records'][i]!="null")checkers.appendChild(createCheckboxLine(data['records'][i], i, atr));
+        if(data['records'][i] != "null")checkers.appendChild(createCheckboxLine(data['records'][i], i, atr));
       }
     },
     dataType: 'json'
@@ -150,6 +164,13 @@ function searchFilterData() {
   return false;
 }
 
+function createDivButton(title, quant) {
+  var categ = '<li class = "btn-load" style="position: absolute;"><a class="btn btn-dark btn-radius btn-brd" data-toggle="tooltip" ' +
+                ' data-placement="top" title="' + quant.toString() + '"' +
+                '>' + title + '</a></li>';
+  document.getElementById('da-thumbs').appendChild(createElementFromHTML(categ));
+}
+
 $.ajaxSetup({async: false});
 populateElements(1, per_page);
 createPaginations(numberOfPages);
@@ -158,3 +179,9 @@ populateCheckboxes('dimensiuni');
 addTitle('Culoare');
 populateCheckboxes('culoare');
 activatePage(1);
+createElementsType();
+// createDivButton("ana are mere", 5);
+// createDivButton("vasile", 8);
+
+createElementsType();
+regulateButtons();
