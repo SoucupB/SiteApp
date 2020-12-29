@@ -180,7 +180,7 @@ function searchFilterData() {
 function createDivButton(title, quant) {
   var categ = '<li class = "btn-load" style="position: absolute;"><a class="btn btn-dark btn-radius btn-brd btn-color" data-toggle="tooltip" ' +
                 ' data-placement="top"' +
-                '>' + title + '</a></li>';
+                'style = "color:red;">' + title + '</a></li>';
   document.getElementById('da-thumbs').appendChild(createElementFromHTML(categ));
 }
 
