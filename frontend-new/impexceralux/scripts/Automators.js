@@ -48,7 +48,6 @@ function coloringButton() {
     var id = "dtr_" + index.toString();
     this.id = id;
     $(this).attr("onClick", 'filterByName("' + id + '", "' + this.innerHTML + '")')
-    console.log(document.getElementById(id))
     index++;
   });
 }
