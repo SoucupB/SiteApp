@@ -62,9 +62,12 @@ function activatePage(page) {
     lastPaginationIndex = 1;
     page = 1;
   }
+  if(!numberOfPages)
+    return 0;
   document.getElementById('pag_' + lastPaginationIndex).removeAttribute("class");
   document.getElementById('pag_' + page).setAttribute("class", "active");
   lastPaginationIndex = page;
+  return 1;
 }
 
 function createCheckboxLine(title, id, idPrefix) {
@@ -102,7 +105,6 @@ function populateElements(page, per_page) {
     },
     dataType: 'json'
   });
-  console.log(url);
 }
 
 function getCateogry() {
@@ -184,6 +186,11 @@ function createDivButton(title, quant) {
   document.getElementById('da-thumbs').appendChild(createElementFromHTML(categ));
 }
 
+function assignScrollFiltersAttr() {
+  console.log(window.innerHeight);
+  $("#checkboxes").css({height: "30%"})
+}
+
 function filterByName(id, name) {
   if(id === "dtr_0") {
     categorie = "";
@@ -208,3 +215,5 @@ createElementsType();
 regulateButtons();
 coloringButton();
 firstColoring();
+
+//window.addEventListener('resize', assignScrollFiltersAttr);
