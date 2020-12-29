@@ -1,3 +1,5 @@
+var lasthighlighted = -1;
+
 function regulateButtons() {
   var elements = 0;
   var totalSize = 0;
@@ -16,7 +18,6 @@ function regulateButtons() {
     elements++;
   });
   var initialStart = w / 2 - totalSize / 2 - 10 * (buttonsCounter - 1);
-  console.log(totalSize, initialStart);
   elements = 0;
   var currentPosition = initialStart;
   $('.btn-load').each(function() {
@@ -25,6 +26,30 @@ function regulateButtons() {
     element.css({position: 'absolute', left: currentPosition + 'px', top: "-59px"})
     currentPosition += element.width() + 10;
     elements++;
+  });
+}
+
+function colorItself(element) {
+  if(lasthighlighted !== 0) {
+    $('#' + lasthighlighted).css({"background-color": "white"});
+  }
+  $('#' + element).css({"background-color": "red"});
+  lasthighlighted = element;
+}
+
+function firstColoring() {
+  lasthighlighted = "dtr_0";
+  $('#' + lasthighlighted).css({"background-color": "red"});
+}
+
+function coloringButton() {
+  var index = 0;
+  $('.btn-color').each(function() {
+    var id = "dtr_" + index.toString();
+    this.id = id;
+    $(this).attr("onClick", 'filterByName("' + id + '", "' + this.innerHTML + '")')
+    console.log(document.getElementById(id))
+    index++;
   });
 }
 

@@ -4,6 +4,7 @@ let idMaps = {};
 let totalCheckerIds = [];
 var filters = null;
 var lastPaginationIndex = 1;
+var categorie = "";
 
 function createMagElement(photo, titlu, id, uniqID) {
   var htmlElement = "<div onclick = 'disableDiv()' class='gallery' id = el_" + id.toString() + ">" +
@@ -57,6 +58,10 @@ function changePag(id) {
 }
 
 function activatePage(page) {
+  if(!document.getElementById('pag_' + lastPaginationIndex)) {
+    lastPaginationIndex = 1;
+    page = 1;
+  }
   document.getElementById('pag_' + lastPaginationIndex).removeAttribute("class");
   document.getElementById('pag_' + page).setAttribute("class", "active");
   lastPaginationIndex = page;
@@ -83,7 +88,8 @@ function createFilterString(filters) {
 }
 
 function populateElements(page, per_page) {
-  const url = 'http://localhost:3000/elements?page=' + page.toString() + '&per_page=' + per_page.toString() + createFilterString(filters);
+  const url = 'http://localhost:3000/elements?page=' + page.toString() + '&per_page=' + per_page.toString() + createFilterString(filters) + getCateogry();
+  console.log(url);
   $.ajax({
     type: "GET",
     url: url,
@@ -99,8 +105,14 @@ function populateElements(page, per_page) {
   console.log(url);
 }
 
+function getCateogry() {
+  if(categorie === "") {
+    return "";
+  }
+  return "&categorie[]=" + categorie;
+}
+
 function disableDiv() {
-  console.log("DSADADA");
   $('#portfolio').attr("disabled", false);
 }
 
@@ -127,9 +139,8 @@ function createElementsType() {
     url: 'http://localhost:3000/elementsAttrs?atr=categorie',
     data: {},
     success: function( data ) {
-      console.log(data['records'])
+      createDivButton("All", 5);
       data['records'].forEach(element => {
-        console.log(element);
         createDivButton(element, 5);
       });
     },
@@ -167,10 +178,21 @@ function searchFilterData() {
 }
 
 function createDivButton(title, quant) {
-  var categ = '<li class = "btn-load" style="position: absolute;"><a class="btn btn-dark btn-radius btn-brd" data-toggle="tooltip" ' +
-                ' data-placement="top" title="' + quant.toString() + '"' +
+  var categ = '<li class = "btn-load" style="position: absolute;"><a class="btn btn-dark btn-radius btn-brd btn-color" data-toggle="tooltip" ' +
+                ' data-placement="top"' +
                 '>' + title + '</a></li>';
   document.getElementById('da-thumbs').appendChild(createElementFromHTML(categ));
+}
+
+function filterByName(id, name) {
+  if(id === "dtr_0") {
+    categorie = "";
+  }
+  else {
+    categorie = name;
+  }
+  searchFilterData();
+  colorItself(id);
 }
 
 $.ajaxSetup({async: false});
@@ -182,4 +204,7 @@ addTitle('Culoare');
 populateCheckboxes('culoare');
 activatePage(1);
 createElementsType();
+
 regulateButtons();
+coloringButton();
+firstColoring();
