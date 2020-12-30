@@ -75,3 +75,7 @@ function magnify(imgID, zoom, leftOffset, topOffset) {
       return {x : x, y : y};
     }
   }
+
+  function noElementsDiv() {
+    return createElementFromHTML("<p id = 'wrng' style = 'text-align: center; line-height: 100px; height:400px; width:400px;'>Nu sunt elemente cu filtrele selectate</p>")
+  }
