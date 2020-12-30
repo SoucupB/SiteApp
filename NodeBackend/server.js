@@ -2,6 +2,7 @@ var express = require('express');
 var app = express();
 var cors = require('cors');
 app.use(cors({origin: 'http://localhost:3000'}));
+var nodemailer = require('nodemailer');
 
 const fs = require('fs');
 let rawdata = fs.readFileSync('../frontend-new/date_impexcera/dateDB.json');
@@ -248,6 +249,41 @@ app.get('/getElementByID', function(req, res){
   }
   res.json({"record": preloadedBuffer[id]})
 });
+
+//npm install nodemailer --save
+app.get('/sendEmail', function(req, res) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+  res.setHeader('Access-Control-Allow-Credentials', true);
+  let email = req.query.email;
+  let description = req.query.description;
+  sendEmail(email, description);
+  res.json({"Email": "Sent"})
+});
+
+function sendEmail(toSendTo, descriere) {
+  var transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: 'teluriu.morota@gmail.com',
+      pass: 'vasile54321'
+    }
+  });
+  var mailOptions = {
+    from: 'teluriu.morota@gmail.com',
+    to: toSendTo, //email-ul cui vrei sa il trimiti
+    subject: 'Observatii',
+    html: '<h1>Email</h1><p>' + toSendTo + '</p>' + '<h1>Descriere</h1><p>' + descriere + '</p>'
+  };
+  transporter.sendMail(mailOptions, function(error, info){
+    if (error) {
+      console.log(error);
+    } else {
+      console.log('Email sent: ' + info.response);
+    }
+  });
+}
 
 preload();
 app.listen(3000);
