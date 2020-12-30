@@ -75,13 +75,6 @@ function activatePage(page) {
   return 1;
 }
 
-function getPosY(el) {
-  for (var lx = 0, ly = 0;
-    el != null;
-    lx += el.offsetLeft, ly += el.offsetTop, el = el.offsetParent);
-  return ly;
-}
-
 function regulateDistance() {
   var containerSize = document.getElementById("da-thumbs").getBoundingClientRect().width;
   var containerPosition = getPosY(document.getElementById("da-thumbs"));

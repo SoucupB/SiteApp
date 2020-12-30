@@ -33,6 +33,20 @@ function getSearchParameters() {
     return params;
   }
 
+function getPosY(el) {
+  for (var lx = 0, ly = 0;
+    el != null;
+    lx += el.offsetLeft, ly += el.offsetTop, el = el.offsetParent);
+  return ly;
+}
+
+function getPosX(el) {
+  for (var lx = 0, ly = 0;
+    el != null;
+    lx += el.offsetLeft, ly += el.offsetTop, el = el.offsetParent);
+  return lx;
+}
+
 function magnify(imgID, zoom, leftOffset, topOffset) {
     var img, glass, w, h, bw;
     img = document.getElementById(imgID);
