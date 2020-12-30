@@ -8,10 +8,10 @@ var categorie = "";
 
 function createMagElement(photo, titlu, id, uniqID) {
   var htmlElement = "<div onclick = 'disableDiv()' class='gallery' id = el_" + id.toString() + ">" +
-                    " <a target='_blank' href='element.html?id=" + uniqID + "'>" +
-                    "   <img src=../date_impexcera/" + photo + " alt='Cinque Terre'>" +
+                    " <a id = trg_ " + id.toString() + " target='_blank' href='element.html?id=" + uniqID + "'>" +
+                    "   <img id = imge_ " + id.toString() + " src=../date_impexcera/" + photo + " alt='Cinque Terre'>" +
                     " </a>" +
-                    "<div class='descr'>" + titlu + "</div>";
+                    "<div class='descr' id = dsc_" + id.toString() + ">" + titlu + "</div>";
   var element = createElementFromHTML(htmlElement);
   return element;
 }
@@ -58,16 +58,40 @@ function changePag(id) {
 }
 
 function activatePage(page) {
+  if($('#wrng')) {
+    $('#wrng').remove();
+  }
   if(!document.getElementById('pag_' + lastPaginationIndex)) {
     lastPaginationIndex = 1;
     page = 1;
   }
-  if(!numberOfPages)
+  if(!numberOfPages) {
+    document.getElementById("elements").appendChild(noElementsDiv())
     return 0;
+  }
   document.getElementById('pag_' + lastPaginationIndex).removeAttribute("class");
   document.getElementById('pag_' + page).setAttribute("class", "active");
   lastPaginationIndex = page;
   return 1;
+}
+
+function getPosY(el) {
+  for (var lx = 0, ly = 0;
+    el != null;
+    lx += el.offsetLeft, ly += el.offsetTop, el = el.offsetParent);
+  return ly;
+}
+
+function regulateDistance() {
+  var containerSize = document.getElementById("da-thumbs").getBoundingClientRect().width;
+  var containerPosition = getPosY(document.getElementById("da-thumbs"));
+  var copyrightsPosition = getPosY(document.getElementById("arca"));
+  var maxSize = containerSize;
+  if(containerSize + containerPosition > copyrightsPosition - 10) {
+    maxSize = copyrightsPosition - containerPosition - 10;
+  }
+  $("#checkboxes").css({height: Math.max(40, (maxSize / containerSize * 91)).toString() + "%"})
+  console.log(containerSize, containerPosition, copyrightsPosition, containerSize + containerPosition, maxSize)
 }
 
 function createCheckboxLine(title, id, idPrefix) {
@@ -92,7 +116,6 @@ function createFilterString(filters) {
 
 function populateElements(page, per_page) {
   const url = 'http://localhost:3000/elements?page=' + page.toString() + '&per_page=' + per_page.toString() + createFilterString(filters) + getCateogry();
-  console.log(url);
   $.ajax({
     type: "GET",
     url: url,
@@ -176,6 +199,7 @@ function searchFilterData() {
   populateElements(1, per_page);
   createPaginations(numberOfPages);
   activatePage(1);
+  regulateDistance();
   return false;
 }
 
@@ -184,11 +208,6 @@ function createDivButton(title, quant) {
                 ' data-placement="top"' +
                 'style = "color:red;">' + title + '</a></li>';
   document.getElementById('da-thumbs').appendChild(createElementFromHTML(categ));
-}
-
-function assignScrollFiltersAttr() {
-  console.log(window.innerHeight);
-  $("#checkboxes").css({height: "30%"})
 }
 
 function filterByName(id, name) {
@@ -215,5 +234,4 @@ createElementsType();
 regulateButtons();
 coloringButton();
 firstColoring();
-
-//window.addEventListener('resize', assignScrollFiltersAttr);
+regulateDistance();
