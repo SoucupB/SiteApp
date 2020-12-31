@@ -29,6 +29,12 @@
 
     <!-- Modernizer for Portfolio -->
     <script src="js/modernizer.js"></script>
+    <style>
+        div.map-pointer-test {
+            position: relative;
+            width: 265px;
+        }
+    </style>
 
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -109,14 +115,16 @@
 			</div>
 		</div>
   </div>
-  <select style = 'position: absolute' id="selected" onchange="return selectLocality(1)">
+  <hr class="invis">
+  <div id = 'crtre' class = 'map-pointer-test' >
+    <h3 style = 'font-size: 2.5em;'>Unde ne gasiti!</h3>
+  </div>
+  <select style = 'position: relative' id="selected" onchange="return selectLocality()">
     <option value="Cluj" selected="selected">Cluj</option>
     <option value="Bucuresti">Bucuresti</option>
     <option value="Sibiu">Sibiu</option>
   </select>
-  <hr class="invis">
-  <div style = 'position: relative; width: 265px' class = 'map-pointer-test' >
-    <h3 style = 'font-size: 2.5em;'>Unde ne gasiti!</h3>
+  <div id='frm'>
   </div>
   <hr class="invis">
   <div id = 'maps'>
