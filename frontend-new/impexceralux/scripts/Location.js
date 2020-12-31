@@ -8,10 +8,9 @@ var mapApiQuery =
 function alliniateMiddle() {
   let w = window.innerWidth;
   $('.map-pointer').each(function() {
-    let startWidth = w / 2.0 - $(this).width() / 2.0;
-    let stW = (Math.max(0, startWidth / w * 100)).toString()
+    let startWidth = Math.max(0, w / 2.0 - $(this).width() / 2.0);
+    let stW = (startWidth / w * 100).toString()
     $(this).css({left: stW + '%'})
-    positionSelector(startWidth);
     $('.map-pointer-test').each(function() {
       $(this).css({left: stW + '%'})
       let selector = $("#selected");
@@ -20,6 +19,20 @@ function alliniateMiddle() {
       selector.css({left: Math.max(0, startWidth) + $(this).width(), top: offsetPosition - 4})
     })
   })
+}
+
+function loader() {
+  if($('#framer')) {
+    $('#framer').remove();
+  }
+  var mapPElement = $('.map-pointer');
+  var height = mapPElement.height();
+  var width = mapPElement.width();
+  var top = mapPElement.offset().top;
+  var left = mapPElement.offset().left;
+  var stre = "<iframe style = 'position: absolute; height:" + height.toString() + "px; width:" + width.toString() + "px;' id = 'framer' frameBorder='0' src='roundingButton.html'></iframe>";
+  document.getElementById('frm').appendChild(createElementFromHTML(stre))
+  $('#framer').css({top: top, left: left})
 }
 
 function createMap(position) {
@@ -31,10 +44,6 @@ function createMap(position) {
   return true;
 }
 
-function positionSelector(relativePos) {
-
-}
-
 function selectLocality() {
   if($('#mapgfg')) {
     $('#mapgfg').remove();
@@ -44,8 +53,10 @@ function selectLocality() {
   alliniateMiddle();
   return false;
 }
-
+$.ajaxSetup({async: false});
 selectLocality();
 alliniateMiddle();
+loader();
 
 window.addEventListener('resize', alliniateMiddle);
+window.addEventListener('resize', loader);
