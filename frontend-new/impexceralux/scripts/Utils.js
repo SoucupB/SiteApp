@@ -1,8 +1,12 @@
+const publicIP = '192.168.100.34'; // adresa ta publica
+const privateIP = '192.168.100.34';
+const publicPort = 3000;
+
 function createElementFromHTML(htmlString) {
     var div = document.createElement('div');
     div.innerHTML = htmlString.trim();
     return div.firstChild;
-  }
+}
 
 async function sleep(time) {
     return new Promise((resolve) => {

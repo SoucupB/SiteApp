@@ -1,8 +1,12 @@
 var express = require('express');
 var app = express();
+const publicIP = '192.168.100.34';
+const publicPort = 3000;
 var cors = require('cors');
-app.use(cors({origin: 'http://localhost:3000'}));
+app.use(cors({origin: 'http://' + publicIP + ':' + publicPort}));
 var nodemailer = require('nodemailer');
+
+// comanda noua python -m http.server 8000 --bind 192.168.100.34 (aici sa iti pui IP-ul privat ca asta ii al meu de pe retea)
 
 const fs = require('fs');
 let rawdata = fs.readFileSync('../frontend-new/date_impexcera/dateDB.json');
@@ -286,4 +290,4 @@ function sendEmail(toSendTo, descriere) {
 }
 
 preload();
-app.listen(3000);
+app.listen(publicPort, publicIP);

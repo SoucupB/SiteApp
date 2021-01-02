@@ -57,7 +57,7 @@ function loadData(data) {
 function getElement() {
   $.ajax({
     type: "GET",
-    url: 'http://localhost:3000/getElementByID?id=' + getSearchParameters()['id'],
+    url: 'http://' + publicIP + ':' + publicPort + '/getElementByID?id=' + getSearchParameters()['id'],
     data: {},
     success: function( data ) {
       loadImage(data['record']['img']);

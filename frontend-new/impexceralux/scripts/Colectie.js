@@ -148,7 +148,7 @@ function createPlaci(photo, nume, culoare, dimensiune,i){
   function getElement() {
     $.ajax({
       type: "GET",
-      url: 'http://localhost:3000/getElementByID?id=' + getSearchParameters()['id'],
+      url: 'http://' + publicIP + ':' + publicPort + '/getElementByID?id=' + getSearchParameters()['id'],
       data: {},
       success: function( data ) {
         loadPresentationImages(data['record']['img']);

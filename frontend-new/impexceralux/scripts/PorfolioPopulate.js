@@ -39,7 +39,7 @@ function createCategories() {
     let container = document.getElementById("cateories");
     $.ajax({
         type: "GET",
-        url: 'http://localhost:3000/tips',
+        url: 'http://' + publicIP + ':3000/tips',
         data: {},
         success: function( data ) {
             const containerDiv = document.getElementById("da-thumbs");
@@ -109,7 +109,7 @@ function fillWithCollectionItems(collectionTypesData, idsOffset, page) {
     }
     $.ajax({
         type: "GET",
-        url: 'http://localhost:3000/portfolio_all?page=' + page.toString() + '&per_page=' + per_page.toString() + queryData,
+        url: 'http://' + publicIP + ':3000/portfolio_all?page=' + page.toString() + '&per_page=' + per_page.toString() + queryData,
         data: {},
         success: function( data ) {
             console.log(idsOffset);

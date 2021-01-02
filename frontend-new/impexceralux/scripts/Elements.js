@@ -108,7 +108,7 @@ function createFilterString(filters) {
 }
 
 function populateElements(page, per_page) {
-  const url = 'http://localhost:3000/elements?page=' + page.toString() + '&per_page=' + per_page.toString() + createFilterString(filters) + getCateogry();
+  const url = 'http://' + publicIP + ':' + publicPort + '/elements?page=' + page.toString() + '&per_page=' + per_page.toString() + createFilterString(filters) + getCateogry();
   $.ajax({
     type: "GET",
     url: url,
@@ -154,7 +154,7 @@ function getAllSelectedData() {
 function createElementsType() {
   $.ajax({
     type: "GET",
-    url: 'http://localhost:3000/elementsAttrs?atr=categorie',
+    url: 'http://' + publicIP + ':' + publicPort + '/elementsAttrs?atr=categorie',
     data: {},
     success: function( data ) {
       createDivButton("All", 5);
@@ -169,7 +169,7 @@ function createElementsType() {
 function populateCheckboxes(atr) {
   $.ajax({
     type: "GET",
-    url: 'http://localhost:3000/elementsAttrs?atr=' + atr,
+    url: 'http://' + publicIP + ':' + publicPort + '/elementsAttrs?atr=' + atr,
     data: {},
     success: function( data ) {
       var checkers = document.getElementById('checkboxes');
