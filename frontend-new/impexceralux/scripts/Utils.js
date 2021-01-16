@@ -1,5 +1,5 @@
-const publicIP = '192.168.100.34'; // adresa ta publica
-const privateIP = '192.168.100.34';
+const publicIP = '127.0.0.1'; // adresa ta publica
+const privateIP = '127.0.0.1';
 const publicPort = 3000;
 
 function createElementFromHTML(htmlString) {

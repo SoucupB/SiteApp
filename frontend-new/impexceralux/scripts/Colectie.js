@@ -89,19 +89,26 @@ function createPlaci(photo, nume, culoare, dimensiune,i){
     var colectie = data['colectie'];
     var htmlStuff = "";
     var ok = 0;
+    var ok2 = 1;
     var photo = "alladin-bl.jpg";//just for testing
+    var pDescription = "Colectia contine: ";
     /// sa-mi bag pula in familia lui de template
     if(elemente.length==1){
       var nume = elemente[0]['categorie']+" "+ colectie+" "+elemente[0]['id'];
+      var culoare = elemente[0]['culoare'];
+      var dimensiune = elemente[0]['dimensiuni'];
       if(elemente[0]['img']){
         photo = elemente[0]['img'];
         console.log(photo);
       }
       else{
-        photo = "alladin-bl.jpg";
+        //return;
+        if(culoare)pDescription +=elemente[0]['categorie'] + " "+culoare+" "+dimensiune;
+        else pDescription +=elemente[0]['categorie'] + " "+dimensiune;
+        //console.log(pDescription);
+        document.getElementById('placi_description').innerHTML=pDescription;
+        return;
       }
-      var culoare = elemente[0]['culoare'];
-      var dimensiune = elemente[0]['dimensiuni'];
       htmlStuff+="<div class='row text-center'>"+createPlaci(photo,nume,culoare,dimensiune,0)+"</div>";
       parent.appendChild(createElementFromHTML(htmlStuff));
     }
@@ -109,16 +116,22 @@ function createPlaci(photo, nume, culoare, dimensiune,i){
       for( i=0;i<elemente.length;i++){
         var nume = elemente[i]['categorie']+" "+ colectie+" "+elemente[i]['id'];
         //if(elemente[i]['img']!="null"||elemente[i]['img']!=null){
-        console.log(elemente.length);
+        //console.log(elemente.length);
+        var culoare = elemente[i]['culoare'];
+        var dimensiune = elemente[i]['dimensiuni'];
         if(elemente[i]['img']){
           photo = elemente[i]['img'];
           console.log(photo);
         }
         else{
+          ok2 = 0;
+          var virgula = ", ";
+          if(i == elemente.length-1) virgula = "";
+          if(culoare)pDescription +=elemente[0]['categorie'] + " "+culoare+" "+dimensiune+virgula;
+          else pDescription +=elemente[0]['categorie'] + " "+dimensiune+virgula;
+          continue;
           photo = "alladin-bl.jpg";
         }
-        var culoare = elemente[i]['culoare'];
-        var dimensiune = elemente[i]['dimensiuni'];
         if(i%3==0){
           htmlStuff+="<div class='row text-center'>"+createPlaci(photo,nume,culoare,dimensiune,i);
         }
@@ -134,15 +147,17 @@ function createPlaci(photo, nume, culoare, dimensiune,i){
           htmlStuff="";
         }
       }
-      if(ok%3!=2){
+      if(ok%3!=2 && ok2){
         htmlStuff+="</div>";
       }
-      console.log(htmlStuff);
-      if(ok && elemente.length!=1){
+      //console.log(htmlStuff);
+      if(ok && elemente.length!=1 && ok2){
         parent.appendChild(createElementFromHTML(htmlStuff));
         parent.appendChild(createElementFromHTML("<hr class='invis'>"));
       }
     }
+    if(ok2)document.getElementById('placi_description').style.display = "none";
+    else document.getElementById('placi_description').innerHTML=pDescription;
 }
 
   function getElement() {

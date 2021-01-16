@@ -1,6 +1,6 @@
 var express = require('express');
 var app = express();
-const publicIP = '192.168.100.34';
+const publicIP = '127.0.0.1';
 const publicPort = 3000;
 var cors = require('cors');
 app.use(cors({origin: 'http://' + publicIP + ':' + publicPort}));
